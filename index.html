@@ -1,0 +1,791 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seven Tarots</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+French+Canon:ital@0;1&display=swap">
+<style>
+/* Layout: an art-book catalogue. Seven decks stand in time order on a shelf; each opens onto a dark table where the deck is ribbon-spread, chosen from, and turned. */
+:root{
+  --ink:#0f0e0c;
+  --ink-2:#171512;
+  --bone:#e8e1d2;
+  --bone-2:rgba(232,225,210,.66);
+  --bone-3:rgba(232,225,210,.42);
+  --hair:rgba(232,225,210,.14);
+  --rubric:#c84d33;
+  --pool:rgba(232,225,210,.045);
+  --shadow:rgba(0,0,0,.62);
+  --sheen:rgba(255,246,226,.30);
+  --edge:rgba(255,244,225,.24);
+  --f-display:"IM Fell French Canon","IM Fell DW Pica",Georgia,serif;
+  --f-text:"IM Fell DW Pica",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --e-out:cubic-bezier(.16,1,.3,1);
+  --e-io:cubic-bezier(.65,0,.35,1);
+  color-scheme:dark;
+}
+[hidden]{display:none!important}
+html,body{min-height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--f-text);font-size:18px;line-height:1.45;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+button{font:inherit;color:inherit}
+:focus-visible{outline:1px solid var(--bone-2);outline-offset:4px}
+.mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--bone-3);font-weight:400}
+
+.page{max-width:1280px;margin:0 auto;padding-inline:clamp(0px,2.4vw,32px);padding-block:0 40px}
+.mast{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-block:22px 0}
+.mast .home{all:unset;cursor:pointer;color:var(--bone-2);transition:color .3s}
+.mast .home:hover{color:var(--bone)}
+
+/* ---------- home ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:28px;margin-top:clamp(40px,7vw,104px)}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(68px,12.4vw,184px);line-height:.8;letter-spacing:-.025em;margin:0}
+h1 em{font-style:italic;letter-spacing:-.035em}
+.lede{font-style:italic;color:var(--bone-2);font-size:21px;line-height:1.3;max-width:15em;margin:0 0 .5em;text-align:right;text-wrap:balance}
+.rise{animation:rise 1.4s var(--e-out) both;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+
+.shelf{list-style:none;margin:clamp(56px,7vw,104px) 0 0;padding:0;display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(14px,2vw,30px);--sh:clamp(170px,18.5vw,272px)}
+.shelf li{flex:0 0 auto;display:flex}
+.vol{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:16px;transition:opacity .7s var(--e-out);animation:rise 1.5s var(--e-out) both;animation-delay:calc(var(--i) * 80ms + .25s)}
+.vstack{position:relative;display:block;height:var(--sh);aspect-ratio:var(--ar)}
+.vstack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:3px;transform-origin:50% 100%;
+  box-shadow:0 1px 1px var(--shadow),0 22px 44px -18px var(--shadow);transition:transform 1s var(--e-out),opacity .5s}
+.vstack .pk{opacity:0}
+.vol:hover .pk1,.vol:focus-visible .pk1{opacity:1;transform:translateX(-24%) rotate(-7deg)}
+.vol:hover .pk2,.vol:focus-visible .pk2{opacity:1;transform:translateX(24%) rotate(7deg)}
+.vol:hover .cv,.vol:focus-visible .cv{transform:translateY(-12px)}
+.vol:focus-visible{outline:none}
+.shelf:has(.vol:hover) .vol:not(:hover){opacity:.3}
+.vmeta{display:flex;flex-direction:column;gap:4px}
+.vname{font-family:var(--f-display);font-style:italic;font-size:21px;line-height:1.08;color:var(--bone);max-width:9em}
+.axis{display:block;width:100%;height:96px;margin-top:14px;overflow:visible}
+.axis .ax{stroke:var(--bone-3);stroke-width:1}
+.axis .axt{fill:var(--bone-3);font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-anchor:middle}
+.axis .cn{fill:none;stroke:var(--hair);stroke-width:1;transition:stroke .4s}
+.axis .dot{fill:var(--bone-2);transition:fill .4s}
+.axis .hl.cn{stroke:var(--rubric)}
+.axis .hl.dot{fill:var(--rubric)}
+.coda{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:clamp(64px,8vw,120px);border-top:1px solid var(--hair);padding-top:18px}
+.coda p{margin:0;max-width:60ch}
+
+/* ---------- deck ---------- */
+.dgrid{display:grid;grid-template-columns:minmax(250px,310px) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"cat table" "more table";gap:24px clamp(32px,5vw,80px);margin-top:clamp(28px,4vw,56px);align-items:start}
+.cat{grid-area:cat;display:flex;flex-direction:column;gap:20px}
+.more{grid-area:more;display:flex;flex-direction:column;gap:20px}
+.table{grid-area:table}
+.cat .back{all:unset;cursor:pointer;align-self:flex-start;color:var(--bone-2);transition:color .3s}
+.cat .back:hover{color:var(--bone)}
+.cat h2{font-family:var(--f-display);font-weight:400;font-size:clamp(42px,4.6vw,66px);line-height:.9;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.ddate{font-family:var(--f-display);font-style:italic;font-size:26px;line-height:1;color:var(--bone-2);margin:-6px 0 0}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px 18px;margin:0;padding-top:16px;border-top:1px solid var(--hair)}
+.facts dt{padding-top:3px}
+.facts dd{margin:0;font-size:16px;line-height:1.3;color:var(--bone-2)}
+.dnote{margin:0;font-size:18px;line-height:1.45;color:var(--bone-2)}
+.mini{position:relative;height:34px;margin-top:2px}
+.mini::before{content:"";position:absolute;left:0;right:0;top:12px;height:1px;background:var(--hair)}
+.mini button{all:unset;cursor:pointer;position:absolute;top:4px;width:17px;height:17px;margin-left:-8.5px;display:grid;place-items:center}
+.mini button::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--bone-3);transition:transform .4s var(--e-out),background .3s}
+.mini button:hover::before{background:var(--bone);transform:scale(1.4)}
+.mini button[aria-current="true"]::before{background:var(--rubric);transform:scale(1.7)}
+.mini span{position:absolute;top:22px}
+.mini .a{left:0}.mini .b{right:0}
+
+.table{position:relative;display:flex;flex-direction:column;align-items:center;gap:22px;min-height:min(78vh,760px);justify-content:center;padding-block:28px;
+  background:radial-gradient(58% 52% at 50% 52%,var(--pool),transparent 72%)}
+.slots{display:flex;justify-content:center;align-items:flex-start;gap:var(--gap);width:100%;--gap:clamp(14px,3.4vw,44px)}
+.slot{width:min(196px,calc((100% - 2 * var(--gap)) / 3));display:flex;flex-direction:column;gap:14px;min-width:0}
+.slots[data-n="1"] .slot{width:min(250px,62%)}
+.sframe{position:relative;width:100%;aspect-ratio:var(--ar);border-radius:3px;perspective:1200px;
+  outline:1px solid var(--hair);outline-offset:-1px;transition:outline-color .6s}
+.sframe.filled{outline-color:transparent}
+.slabel{display:flex;flex-direction:column;gap:4px;min-height:4.8em}
+.pname{font-family:var(--f-display);font-style:italic;font-size:clamp(17px,1.9vw,23px);line-height:1.1;text-wrap:balance}
+.slabel .later{opacity:0;transform:translateY(6px);transition:opacity 1s var(--e-out),transform 1s var(--e-out)}
+.slabel.shown .later{opacity:1;transform:none}
+.slabel.shown .later.l2{transition-delay:.12s}
+
+.tilt{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .8s var(--e-out)}
+.tilt.live{transition:transform .15s linear}
+.card{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .5s var(--e-out)}
+.card.up{transform:rotateY(180deg)}
+.card.can{cursor:pointer}
+.card.can:hover{transform:translateY(-6px)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:3px;overflow:hidden;
+  box-shadow:0 1px 1px var(--shadow),0 22px 46px -18px var(--shadow)}
+.face.bk{background:var(--back) center/cover no-repeat,var(--ink-2)}
+.face.fr{transform:rotateY(180deg);background:var(--ink-2)}
+.face.fr img{width:100%;height:100%;object-fit:cover;display:block}
+.face.fr::after{content:"";position:absolute;inset:0;pointer-events:none;transform:translateX(-110%);
+  background:linear-gradient(112deg,transparent 30%,var(--sheen) 48%,transparent 64%)}
+.card.up .face.fr::after{animation:sweep 1.7s .5s var(--e-io) forwards}
+@keyframes sweep{to{transform:translateX(110%)}}
+.face.fr .var{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,30%),var(--sheen),transparent 58%);mix-blend-mode:soft-light}
+.tilt.live .var{opacity:1}
+.sframe .card.up{cursor:zoom-in}
+
+.ribbon{position:relative;width:100%;height:calc(var(--rh) + 58px);outline:none;
+  --rw:clamp(46px,6.2vw,84px);--rh:calc(var(--rw) / var(--ar));transform-origin:50% 100%;transition:height 1s var(--e-io),opacity .7s,transform 1.2s var(--e-out)}
+.ribbon.idle{transform:scale(1.55)}
+.ribbon.closed{height:0;opacity:0;pointer-events:none}
+.ribbon.choose{cursor:pointer;touch-action:none}
+.ribbon:focus-visible{outline:1px dashed var(--hair);outline-offset:8px}
+.rc{position:absolute;left:0;top:0;width:var(--rw);aspect-ratio:var(--ar);border-radius:3px;will-change:transform;
+  background:var(--back) center/cover no-repeat,var(--ink-2);
+  box-shadow:inset 1px 0 0 var(--edge),0 0 0 .5px var(--shadow),-1px 1px 4px -1px var(--shadow);transition:transform .7s var(--e-out),opacity .35s}
+.rc.gone{opacity:0}
+.ribbon .floor{position:absolute;left:50%;top:calc(30px + var(--rh) - 6px);width:calc(var(--rw) * 1.5);height:18px;margin-left:calc(var(--rw) * -.75);
+  border-radius:50%;background:radial-gradient(closest-side,var(--shadow),transparent);transition:opacity .5s}
+.ribbon.spread .floor{opacity:0}
+
+.controls{display:flex;align-items:center;gap:22px}
+.tbtn{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--bone-2);
+  padding:10px 1px 7px;border-bottom:1px solid var(--hair);transition:color .3s,border-color .3s}
+.tbtn:hover{color:var(--bone);border-color:var(--bone-2)}
+.controls i{font-style:normal;color:var(--bone-3);font-family:var(--f-mono);font-size:11px}
+.cue{margin:0;min-height:1.4em;font-style:italic;color:var(--bone-2);font-size:20px;text-align:center}
+
+.verdict{width:100%;max-width:38rem;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.rlines{display:flex;flex-direction:column;gap:12px;margin:0}
+.rline{margin:0;font-size:20px;line-height:1.4;display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:16px;align-items:baseline;
+  opacity:0;transform:translateY(6px);transition:opacity 1s var(--e-out),transform 1s var(--e-out)}
+.rline.shown{opacity:1;transform:none}
+.rline .mono{color:var(--rubric)}
+.omen{margin:0;font-family:var(--f-display);font-style:italic;font-size:clamp(22px,2.4vw,28px);line-height:1.2;text-wrap:balance;
+  opacity:0;transition:opacity 1.6s var(--e-out)}
+.omen.shown{opacity:1}
+.after{display:flex;gap:24px;flex-wrap:wrap}
+
+.plates{margin-top:clamp(72px,10vw,150px);border-top:1px solid var(--hair);padding-top:20px}
+.plates header{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.plates h3{font-family:var(--f-display);font-weight:400;font-style:italic;font-size:34px;margin:0;line-height:1}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:30px 18px;margin-top:30px}
+.plate{all:unset;cursor:zoom-in;display:flex;flex-direction:column;gap:9px;min-width:0}
+.plate img{width:100%;aspect-ratio:var(--ar);object-fit:cover;border-radius:2px;background:var(--ink-2);
+  box-shadow:0 1px 1px var(--shadow),0 14px 28px -14px var(--shadow);transition:transform .6s var(--e-out)}
+.plate:hover img{transform:translateY(-4px)}
+.plate .pn{font-size:9.5px}
+.plate .pt{font-style:italic;font-size:15px;line-height:1.15;color:var(--bone-2);overflow-wrap:anywhere}
+.turn{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(56px,8vw,110px);border-top:1px solid var(--hair);padding-top:18px}
+.turn button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px}
+.turn button:last-child{text-align:right;align-items:flex-end}
+.turn .tn{font-family:var(--f-display);font-style:italic;font-size:clamp(22px,2.6vw,32px);line-height:1.05;transition:color .3s}
+.turn button:hover .tn{color:var(--bone-2)}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:80;display:grid;place-items:center;opacity:0;transition:opacity .5s var(--e-out);
+  background:color-mix(in srgb,var(--ink) 95%,transparent);
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb.on{opacity:1}
+.lbin{display:grid;grid-template-columns:auto minmax(0,21rem);gap:clamp(28px,5vw,72px);align-items:center;max-width:min(100%,1040px)}
+.lbimg{display:block;height:min(80vh,860px);max-width:min(52vw,520px);aspect-ratio:var(--ar);object-fit:contain;border-radius:3px;
+  box-shadow:0 1px 1px var(--shadow),0 40px 80px -30px var(--shadow)}
+.lbcap{display:flex;flex-direction:column;gap:10px}
+.lbcap h4{font-family:var(--f-display);font-weight:400;font-style:italic;font-size:clamp(32px,3.6vw,48px);line-height:.95;margin:0;text-wrap:balance}
+.lbcap p{margin:0}
+.lbcap .lm{font-size:20px;line-height:1.4;color:var(--bone);margin-top:8px}
+.lbcap .ld{margin-top:14px;padding-top:12px;border-top:1px solid var(--hair)}
+.lbnav{display:flex;gap:22px;margin-top:22px}
+.lbx{position:absolute;top:max(18px,env(safe-area-inset-top,0px));right:max(18px,env(safe-area-inset-right,0px))}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .lede{text-align:left}
+  .shelf{--sh:clamp(230px,62vw,340px);justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+    margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)));
+    padding:28px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px));gap:28px}
+  .shelf::-webkit-scrollbar{display:none}
+  .shelf li{scroll-snap-align:center}
+  .axis{display:none}
+  .dgrid{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;grid-template-areas:"cat" "table" "more"}
+  .table{min-height:0;padding-block:54px 20px}
+  .ribbon.idle{transform:scale(1.3)}
+  .lbin{grid-template-columns:1fr;justify-items:center;gap:20px}
+  .lbimg{height:min(58vh,560px);max-width:86vw}
+  .lbcap{text-align:center;align-items:center}
+  .lbnav{justify-content:center}
+  .rline{grid-template-columns:1fr;gap:2px}
+}
+@media (max-width:520px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:20px 12px}
+  .pname{font-size:15px}
+  .slabel .mono{font-size:9.5px;letter-spacing:.1em}
+}
+@media (prefers-reduced-motion:reduce){
+  .rise,.vol{animation:none}
+  .card.up .face.fr::after{animation:none}
+  .rc,.card,.tilt,.ribbon,.rline,.omen,.slabel .later,.vstack img{transition-duration:.01s}
+}
+</style>
+
+<div class="page">
+  <header class="mast">
+    <button type="button" class="home mono" id="toHome">Seven Tarots</button>
+    <span class="mono">Public domain · 1450–1909</span>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <h1 class="rise">Seven <em>Tarots</em></h1>
+      <p class="lede rise" style="--d:.15s">Seven early decks. Choose one, hold a question, and draw.</p>
+    </section>
+    <ol class="shelf" id="shelf"></ol>
+    <svg class="axis" id="axis" aria-hidden="true"></svg>
+    <footer class="coda">
+      <p class="mono">Scans from the Bibliothèque nationale de France, Wikimedia Commons and a 1909 printing</p>
+      <p class="mono">Created by Iman Anvari</p>
+    </footer>
+  </main>
+
+  <main id="deck" hidden>
+    <div class="dgrid">
+      <aside class="cat" id="cat">
+        <button type="button" class="back mono" id="back">← All seven</button>
+        <h2 id="dName"></h2>
+        <p class="ddate" id="dDate"></p>
+        <div class="mini" id="mini"><span class="mono a">1450</span><span class="mono b">1909</span></div>
+      </aside>
+      <div class="more" id="more">
+        <dl class="facts" id="dFacts"></dl>
+        <p class="dnote" id="dNote"></p>
+      </div>
+
+      <section class="table" id="table" aria-label="Table">
+        <div class="slots" id="slots" hidden></div>
+        <div class="verdict" id="verdict" hidden>
+          <div class="rlines" id="rlines"></div>
+          <p class="omen" id="omen"></p>
+          <div class="after" id="after" hidden>
+            <button type="button" class="tbtn" id="again">Draw again</button>
+            <button type="button" class="tbtn" id="toPlates">Leaf through the deck</button>
+          </div>
+        </div>
+        <div class="ribbon" id="ribbon" tabindex="-1" aria-label="The deck"><span class="floor"></span></div>
+        <p class="cue" id="cue">Hold a question in mind.</p>
+        <div class="controls" id="controls">
+          <button type="button" class="tbtn" data-n="1">Draw one</button><i>/</i>
+          <button type="button" class="tbtn" data-n="3">Draw three</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="plates" id="plates">
+      <header><h3>The cards</h3><span class="mono" id="pCount"></span></header>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <nav class="turn" id="turnNav"></nav>
+  </main>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Card">
+  <button type="button" class="tbtn lbx" id="lbClose">Close</button>
+  <div class="lbin">
+    <img class="lbimg" id="lbImg" alt="">
+    <div class="lbcap">
+      <p class="mono" id="lbNum"></p>
+      <h4 id="lbName"></h4>
+      <p class="mono" id="lbEn"></p>
+      <p class="lm" id="lbMean"></p>
+      <p class="mono ld" id="lbDeck"></p>
+      <div class="lbnav" id="lbNav">
+        <button type="button" class="tbtn" id="lbPrev">← Previous</button>
+        <button type="button" class="tbtn" id="lbNext">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+const DATA = [{"id":"visconti","name":"Visconti-Sforza","date":"c. 1450","year":1450,"place":"Milan","maker":"Workshop of Bonifacio Bembo","medium":"Tempera and gold leaf on pasteboard","note":"Painted by hand for the dukes of Milan, when tarot was still a card game called trionfi. Four cards are lost, the Devil and the Tower among them, so they can never be drawn here.","credit":"Facsimile of the Morgan-Bergamo deck, via Wikimedia Commons","count":"73 of 78 survive","cover":"00_Fool","peek":["01_Magician","21_World"],"back":{"kind":"lattice","paper":"#5a1b13","ink":"#c7a156"},"cards":[{"f":"00_Fool","n":"Il Matto","e":"The Fool","num":"","m":"Step off the edge. Not knowing is how it begins.","k":"M"},{"f":"01_Magician","n":"Il Bagatto","e":"The Magician","num":"","m":"Everything you need is already on the table.","k":"M"},{"f":"02_High_Priestess","n":"La Papessa","e":"The High Priestess","num":"","m":"Something is known but not yet said. Listen.","k":"M"},{"f":"03_Empress","n":"L’Imperatrice","e":"The Empress","num":"","m":"Abundance. Tend what is growing.","k":"M"},{"f":"04_Emperor","n":"L’Imperatore","e":"The Emperor","num":"","m":"Build the structure, and answer for it.","k":"M"},{"f":"05_Hierophant","n":"Il Papa","e":"The Hierophant","num":"","m":"Seek the teacher, the tradition, the rite.","k":"M"},{"f":"06_Lovers","n":"L’Amore","e":"The Lovers","num":"","m":"A choice of the heart, and what it costs.","k":"M"},{"f":"07_Chariot","n":"Il Carro","e":"The Chariot","num":"","m":"Hold the opposing forces and drive on.","k":"M"},{"f":"08_Justice","n":"La Giustizia","e":"Justice","num":"","m":"What was set in motion returns. Weigh it fairly.","k":"M"},{"f":"09_Hermit","n":"L’Eremita","e":"The Hermit","num":"","m":"Withdraw. Your own lamp is enough.","k":"M"},{"f":"10_Wheel_of_Fortune","n":"La Ruota","e":"Wheel of Fortune","num":"","m":"The wheel turns. Nothing stays where it is.","k":"M"},{"f":"11_Strength","n":"La Fortezza","e":"Strength","num":"","m":"Gentleness masters what force cannot.","k":"M"},{"f":"12_Hanged_Man","n":"Il Traditore","e":"The Hanged Man","num":"","m":"Give up the position. See it upside down.","k":"M"},{"f":"13_Death","n":"La Morte","e":"Death","num":"","m":"An ending clears the ground.","k":"M"},{"f":"14_Temperance","n":"La Temperanza","e":"Temperance","num":"","m":"Mix slowly. Patience makes the alloy.","k":"M"},{"f":"17_Star","n":"La Stella","e":"The Star","num":"","m":"After the storm, a quiet hope.","k":"M"},{"f":"18_Moon","n":"La Luna","e":"The Moon","num":"","m":"Not everything is visible. Move carefully in the dark.","k":"M"},{"f":"19_Sun","n":"Il Sole","e":"The Sun","num":"","m":"Clarity, warmth, plain joy.","k":"M"},{"f":"20_Judgement","n":"L’Angelo","e":"Judgement","num":"","m":"A call to rise and answer for your life.","k":"M"},{"f":"21_World","n":"Il Mondo","e":"The World","num":"","m":"Completion. The circle closes.","k":"M"},{"f":"Cups01","n":"Asso di Coppe","e":"Ace of Cups","num":"","m":"A heart opens.","k":"C"},{"f":"Cups02","n":"Due di Coppe","e":"Two of Cups","num":"","m":"Two meet as equals.","k":"C"},{"f":"Cups03","n":"Tre di Coppe","e":"Three of Cups","num":"","m":"Friends gather. A celebration.","k":"C"},{"f":"Cups04","n":"Quattro di Coppe","e":"Four of Cups","num":"","m":"What is offered does not tempt you.","k":"C"},{"f":"Cups05","n":"Cinque di Coppe","e":"Five of Cups","num":"","m":"Grief for what spilled. Two cups still stand.","k":"C"},{"f":"Cups06","n":"Sei di Coppe","e":"Six of Cups","num":"","m":"An old sweetness returns.","k":"C"},{"f":"Cups07","n":"Sette di Coppe","e":"Seven of Cups","num":"","m":"Many dreams. Choose one.","k":"C"},{"f":"Cups08","n":"Otto di Coppe","e":"Eight of Cups","num":"","m":"Walk away from what no longer fills you.","k":"C"},{"f":"Cups09","n":"Nove di Coppe","e":"Nine of Cups","num":"","m":"The wish is granted.","k":"C"},{"f":"Cups10","n":"Dieci di Coppe","e":"Ten of Cups","num":"","m":"A full house. A lasting joy.","k":"C"},{"f":"Cups11","n":"Fante di Coppe","e":"Page of Cups","num":"","m":"A tender message.","k":"C"},{"f":"Cups12","n":"Cavaliere di Coppe","e":"Knight of Cups","num":"","m":"An offer of the heart.","k":"C"},{"f":"Cups13","n":"Regina di Coppe","e":"Queen of Cups","num":"","m":"Deep feeling, held with care.","k":"C"},{"f":"Pents01","n":"Asso di Denari","e":"Ace of Coins","num":"","m":"A seed of wealth or health.","k":"P"},{"f":"Pents02","n":"Due di Denari","e":"Two of Coins","num":"","m":"Juggling. Keep your balance.","k":"P"},{"f":"Pents03","n":"Tre di Denari","e":"Three of Coins","num":"","m":"Good work done together.","k":"P"},{"f":"Pents04","n":"Quattro di Denari","e":"Four of Coins","num":"","m":"Holding tight. Security, or greed.","k":"P"},{"f":"Pents05","n":"Cinque di Denari","e":"Five of Coins","num":"","m":"Out in the cold. Help is near.","k":"P"},{"f":"Pents06","n":"Sei di Denari","e":"Six of Coins","num":"","m":"Giving and receiving.","k":"P"},{"f":"Pents07","n":"Sette di Denari","e":"Seven of Coins","num":"","m":"Patience. The harvest is slow.","k":"P"},{"f":"Pents08","n":"Otto di Denari","e":"Eight of Coins","num":"","m":"Diligent craft.","k":"P"},{"f":"Pents09","n":"Nove di Denari","e":"Nine of Coins","num":"","m":"Comfort you made yourself.","k":"P"},{"f":"Pents10","n":"Dieci di Denari","e":"Ten of Coins","num":"","m":"Lasting wealth. An inheritance.","k":"P"},{"f":"Pents11","n":"Fante di Denari","e":"Page of Coins","num":"","m":"A student of the material world.","k":"P"},{"f":"Pents13","n":"Regina di Denari","e":"Queen of Coins","num":"","m":"Practical care and plenty.","k":"P"},{"f":"Pents14","n":"Re di Denari","e":"King of Coins","num":"","m":"Wealth well governed.","k":"P"},{"f":"Swords01","n":"Asso di Spade","e":"Ace of Swords","num":"","m":"A clean cut. The truth.","k":"S"},{"f":"Swords02","n":"Due di Spade","e":"Two of Swords","num":"","m":"A standoff. You are avoiding the choice.","k":"S"},{"f":"Swords04","n":"Quattro di Spade","e":"Four of Swords","num":"","m":"Rest before the next battle.","k":"S"},{"f":"Swords05","n":"Cinque di Spade","e":"Five of Swords","num":"","m":"Winning, at too high a price.","k":"S"},{"f":"Swords06","n":"Sei di Spade","e":"Six of Swords","num":"","m":"Crossing to calmer water.","k":"S"},{"f":"Swords07","n":"Sette di Spade","e":"Seven of Swords","num":"","m":"Cunning. Not everything is above board.","k":"S"},{"f":"Swords08","n":"Otto di Spade","e":"Eight of Swords","num":"","m":"Bound by your own thoughts.","k":"S"},{"f":"Swords09","n":"Nove di Spade","e":"Nine of Swords","num":"","m":"Worry in the night.","k":"S"},{"f":"Swords10","n":"Dieci di Spade","e":"Ten of Swords","num":"","m":"The worst is over. Dawn follows.","k":"S"},{"f":"Swords11","n":"Fante di Spade","e":"Page of Swords","num":"","m":"Watchful, curious, sharp.","k":"S"},{"f":"Swords12","n":"Cavaliere di Spade","e":"Knight of Swords","num":"","m":"Swift, headlong action.","k":"S"},{"f":"Swords13","n":"Regina di Spade","e":"Queen of Swords","num":"","m":"Clear sight, without illusions.","k":"S"},{"f":"Swords14","n":"Re di Spade","e":"King of Swords","num":"","m":"Judgement and authority.","k":"S"},{"f":"Wands01","n":"Asso di Bastoni","e":"Ace of Batons","num":"","m":"A spark. Begin.","k":"W"},{"f":"Wands02","n":"Due di Bastoni","e":"Two of Batons","num":"","m":"The world is in your hand. Plan.","k":"W"},{"f":"Wands03","n":"Tre di Bastoni","e":"Three of Batons","num":"","m":"Your ships are on the way.","k":"W"},{"f":"Wands04","n":"Quattro di Bastoni","e":"Four of Batons","num":"","m":"A homecoming. A threshold crossed.","k":"W"},{"f":"Wands05","n":"Cinque di Bastoni","e":"Five of Batons","num":"","m":"Rivalry and friction.","k":"W"},{"f":"Wands06","n":"Sei di Bastoni","e":"Six of Batons","num":"","m":"Recognition. A public win.","k":"W"},{"f":"Wands07","n":"Sette di Bastoni","e":"Seven of Batons","num":"","m":"Hold the high ground.","k":"W"},{"f":"Wands08","n":"Otto di Bastoni","e":"Eight of Batons","num":"","m":"Things move fast now.","k":"W"},{"f":"Wands09","n":"Nove di Bastoni","e":"Nine of Batons","num":"","m":"Wounded, and still standing.","k":"W"},{"f":"Wands10","n":"Dieci di Bastoni","e":"Ten of Batons","num":"","m":"Too much carried for too long.","k":"W"},{"f":"Wands11","n":"Fante di Bastoni","e":"Page of Batons","num":"","m":"News of a venture.","k":"W"},{"f":"Wands12","n":"Cavaliere di Bastoni","e":"Knight of Batons","num":"","m":"Restless, bold, on the move.","k":"W"},{"f":"Wands13","n":"Regina di Bastoni","e":"Queen of Batons","num":"","m":"Warmth and confidence.","k":"W"},{"f":"Wands14","n":"Re di Bastoni","e":"King of Batons","num":"","m":"Vision, and the will to lead.","k":"W"}],"ar":0.5},{"id":"sola","name":"Sola Busca","date":"c. 1491","year":1491,"place":"Ferrara or Venice","maker":"Unknown engraver","medium":"Engraving, coloured by hand","note":"The oldest complete 78-card tarot, and the first to illustrate every card. Its trumps are ancient warriors and kings instead of the usual allegories, so here each is read by its number.","credit":"Wikimedia Commons","count":"78 cards","cover":"00","peek":["21","64"],"back":{"kind":"hatch","paper":"#e4d9bf","ink":"#5b3f28"},"cards":[{"f":"00","n":"Mato","e":"Read as The Fool","num":"0","m":"Step off the edge. Not knowing is how it begins.","k":"M"},{"f":"01","n":"Panfilio","e":"Read as The Magician","num":"I","m":"Everything you need is already on the table.","k":"M"},{"f":"02","n":"Postumio","e":"Read as The High Priestess","num":"II","m":"Something is known but not yet said. Listen.","k":"M"},{"f":"03","n":"Lenpio","e":"Read as The Empress","num":"III","m":"Abundance. Tend what is growing.","k":"M"},{"f":"04","n":"Mario","e":"Read as The Emperor","num":"IV","m":"Build the structure, and answer for it.","k":"M"},{"f":"05","n":"Catulo","e":"Read as The Hierophant","num":"V","m":"Seek the teacher, the tradition, the rite.","k":"M"},{"f":"06","n":"Sesto","e":"Read as The Lovers","num":"VI","m":"A choice of the heart, and what it costs.","k":"M"},{"f":"07","n":"Deo Tauro","e":"Read as The Chariot","num":"VII","m":"Hold the opposing forces and drive on.","k":"M"},{"f":"08","n":"Nerone","e":"Read as Justice","num":"VIII","m":"What was set in motion returns. Weigh it fairly.","k":"M"},{"f":"09","n":"Falco","e":"Read as The Hermit","num":"IX","m":"Withdraw. Your own lamp is enough.","k":"M"},{"f":"10","n":"Venturio","e":"Read as Wheel of Fortune","num":"X","m":"The wheel turns. Nothing stays where it is.","k":"M"},{"f":"11","n":"Tulio","e":"Read as Strength","num":"XI","m":"Gentleness masters what force cannot.","k":"M"},{"f":"12","n":"Carbone","e":"Read as The Hanged Man","num":"XII","m":"Give up the position. See it upside down.","k":"M"},{"f":"13","n":"Catone","e":"Read as Death","num":"XIII","m":"An ending clears the ground.","k":"M"},{"f":"14","n":"Bacho","e":"Read as Temperance","num":"XIV","m":"Mix slowly. Patience makes the alloy.","k":"M"},{"f":"15","n":"Metelo","e":"Read as The Devil","num":"XV","m":"Name what binds you. The chain is looser than it looks.","k":"M"},{"f":"16","n":"Olivo","e":"Read as The Tower","num":"XVI","m":"What was built on a lie comes down. Let it.","k":"M"},{"f":"17","n":"Ipeo","e":"Read as The Star","num":"XVII","m":"After the storm, a quiet hope.","k":"M"},{"f":"18","n":"Lentulo","e":"Read as The Moon","num":"XVIII","m":"Not everything is visible. Move carefully in the dark.","k":"M"},{"f":"19","n":"Sabino","e":"Read as The Sun","num":"XIX","m":"Clarity, warmth, plain joy.","k":"M"},{"f":"20","n":"Nenbroto","e":"Read as Judgement","num":"XX","m":"A call to rise and answer for your life.","k":"M"},{"f":"21","n":"Nabuchodenasor","e":"Read as The World","num":"XXI","m":"Completion. The circle closes.","k":"M"},{"f":"22","n":"Asso di Coppe","e":"Ace of Cups","num":"","m":"A heart opens.","k":"C"},{"f":"23","n":"Due di Coppe","e":"Two of Cups","num":"","m":"Two meet as equals.","k":"C"},{"f":"24","n":"Tre di Coppe","e":"Three of Cups","num":"","m":"Friends gather. A celebration.","k":"C"},{"f":"25","n":"Quattro di Coppe","e":"Four of Cups","num":"","m":"What is offered does not tempt you.","k":"C"},{"f":"26","n":"Cinque di Coppe","e":"Five of Cups","num":"","m":"Grief for what spilled. Two cups still stand.","k":"C"},{"f":"27","n":"Sei di Coppe","e":"Six of Cups","num":"","m":"An old sweetness returns.","k":"C"},{"f":"28","n":"Sette di Coppe","e":"Seven of Cups","num":"","m":"Many dreams. Choose one.","k":"C"},{"f":"29","n":"Otto di Coppe","e":"Eight of Cups","num":"","m":"Walk away from what no longer fills you.","k":"C"},{"f":"30","n":"Nove di Coppe","e":"Nine of Cups","num":"","m":"The wish is granted.","k":"C"},{"f":"31","n":"Dieci di Coppe","e":"Ten of Cups","num":"","m":"A full house. A lasting joy.","k":"C"},{"f":"32","n":"Fante di Coppe","e":"Page of Cups","num":"","m":"A tender message.","k":"C"},{"f":"33","n":"Cavaliere di Coppe","e":"Knight of Cups","num":"","m":"An offer of the heart.","k":"C"},{"f":"34","n":"Regina di Coppe","e":"Queen of Cups","num":"","m":"Deep feeling, held with care.","k":"C"},{"f":"35","n":"Re di Coppe","e":"King of Cups","num":"","m":"Calm over strong waters.","k":"C"},{"f":"36","n":"Asso di Denari","e":"Ace of Coins","num":"","m":"A seed of wealth or health.","k":"P"},{"f":"37","n":"Due di Denari","e":"Two of Coins","num":"","m":"Juggling. Keep your balance.","k":"P"},{"f":"38","n":"Tre di Denari","e":"Three of Coins","num":"","m":"Good work done together.","k":"P"},{"f":"39","n":"Quattro di Denari","e":"Four of Coins","num":"","m":"Holding tight. Security, or greed.","k":"P"},{"f":"40","n":"Cinque di Denari","e":"Five of Coins","num":"","m":"Out in the cold. Help is near.","k":"P"},{"f":"41","n":"Sei di Denari","e":"Six of Coins","num":"","m":"Giving and receiving.","k":"P"},{"f":"42","n":"Sette di Denari","e":"Seven of Coins","num":"","m":"Patience. The harvest is slow.","k":"P"},{"f":"43","n":"Otto di Denari","e":"Eight of Coins","num":"","m":"Diligent craft.","k":"P"},{"f":"44","n":"Nove di Denari","e":"Nine of Coins","num":"","m":"Comfort you made yourself.","k":"P"},{"f":"45","n":"Dieci di Denari","e":"Ten of Coins","num":"","m":"Lasting wealth. An inheritance.","k":"P"},{"f":"46","n":"Fante di Denari","e":"Page of Coins","num":"","m":"A student of the material world.","k":"P"},{"f":"47","n":"Cavaliere di Denari","e":"Knight of Coins","num":"","m":"Slow, reliable progress.","k":"P"},{"f":"48","n":"Regina di Denari","e":"Queen of Coins","num":"","m":"Practical care and plenty.","k":"P"},{"f":"49","n":"Re di Denari","e":"King of Coins","num":"","m":"Wealth well governed.","k":"P"},{"f":"50","n":"Asso di Bastoni","e":"Ace of Batons","num":"","m":"A spark. Begin.","k":"W"},{"f":"51","n":"Due di Bastoni","e":"Two of Batons","num":"","m":"The world is in your hand. Plan.","k":"W"},{"f":"52","n":"Tre di Bastoni","e":"Three of Batons","num":"","m":"Your ships are on the way.","k":"W"},{"f":"53","n":"Quattro di Bastoni","e":"Four of Batons","num":"","m":"A homecoming. A threshold crossed.","k":"W"},{"f":"54","n":"Cinque di Bastoni","e":"Five of Batons","num":"","m":"Rivalry and friction.","k":"W"},{"f":"55","n":"Sei di Bastoni","e":"Six of Batons","num":"","m":"Recognition. A public win.","k":"W"},{"f":"56","n":"Sette di Bastoni","e":"Seven of Batons","num":"","m":"Hold the high ground.","k":"W"},{"f":"57","n":"Otto di Bastoni","e":"Eight of Batons","num":"","m":"Things move fast now.","k":"W"},{"f":"58","n":"Nove di Bastoni","e":"Nine of Batons","num":"","m":"Wounded, and still standing.","k":"W"},{"f":"59","n":"Dieci di Bastoni","e":"Ten of Batons","num":"","m":"Too much carried for too long.","k":"W"},{"f":"60","n":"Fante di Bastoni","e":"Page of Batons","num":"","m":"News of a venture.","k":"W"},{"f":"61","n":"Cavaliere di Bastoni","e":"Knight of Batons","num":"","m":"Restless, bold, on the move.","k":"W"},{"f":"62","n":"Regina di Bastoni","e":"Queen of Batons","num":"","m":"Warmth and confidence.","k":"W"},{"f":"63","n":"Re di Bastoni","e":"King of Batons","num":"","m":"Vision, and the will to lead.","k":"W"},{"f":"64","n":"Asso di Spade","e":"Ace of Swords","num":"","m":"A clean cut. The truth.","k":"S"},{"f":"65","n":"Due di Spade","e":"Two of Swords","num":"","m":"A standoff. You are avoiding the choice.","k":"S"},{"f":"66","n":"Tre di Spade","e":"Three of Swords","num":"","m":"A grief that has to be felt.","k":"S"},{"f":"67","n":"Quattro di Spade","e":"Four of Swords","num":"","m":"Rest before the next battle.","k":"S"},{"f":"68","n":"Cinque di Spade","e":"Five of Swords","num":"","m":"Winning, at too high a price.","k":"S"},{"f":"69","n":"Sei di Spade","e":"Six of Swords","num":"","m":"Crossing to calmer water.","k":"S"},{"f":"70","n":"Sette di Spade","e":"Seven of Swords","num":"","m":"Cunning. Not everything is above board.","k":"S"},{"f":"71","n":"Otto di Spade","e":"Eight of Swords","num":"","m":"Bound by your own thoughts.","k":"S"},{"f":"72","n":"Nove di Spade","e":"Nine of Swords","num":"","m":"Worry in the night.","k":"S"},{"f":"73","n":"Dieci di Spade","e":"Ten of Swords","num":"","m":"The worst is over. Dawn follows.","k":"S"},{"f":"74","n":"Fante di Spade","e":"Page of Swords","num":"","m":"Watchful, curious, sharp.","k":"S"},{"f":"75","n":"Cavaliere di Spade","e":"Knight of Swords","num":"","m":"Swift, headlong action.","k":"S"},{"f":"76","n":"Regina di Spade","e":"Queen of Swords","num":"","m":"Clear sight, without illusions.","k":"S"},{"f":"77","n":"Re di Spade","e":"King of Swords","num":"","m":"Judgement and authority.","k":"S"}],"ar":0.5405},{"id":"vieville","name":"Viéville","date":"c. 1650","year":1650,"place":"Paris","maker":"Jacques Viéville","medium":"Woodcut, coloured by stencil","note":"One of the earliest French tarots, cut before the Marseille pattern settled. Its trumps keep their own order, with Justice seventh and the Hermit eleventh.","credit":"Bibliothèque nationale de France","count":"78 cards","cover":"00_Le_Mat","peek":["19_Le_Soleil","16_La_Maison_Dieu"],"back":{"kind":"image"},"cards":[{"f":"00_Le_Mat","n":"Le Mat","e":"The Fool","num":"","m":"Step off the edge. Not knowing is how it begins.","k":"M"},{"f":"01_Le_Bateleur","n":"Le Bateleur","e":"The Magician","num":"I","m":"Everything you need is already on the table.","k":"M"},{"f":"02_La_Papesse","n":"La Papesse","e":"The High Priestess","num":"II","m":"Something is known but not yet said. Listen.","k":"M"},{"f":"03_L_Imperatrice","n":"L’Impératrice","e":"The Empress","num":"III","m":"Abundance. Tend what is growing.","k":"M"},{"f":"04_L_Empereur","n":"L’Empereur","e":"The Emperor","num":"IV","m":"Build the structure, and answer for it.","k":"M"},{"f":"05_Le_Pape","n":"Le Pape","e":"The Hierophant","num":"V","m":"Seek the teacher, the tradition, the rite.","k":"M"},{"f":"06_L_Amoureux","n":"L’Amoureux","e":"The Lovers","num":"VI","m":"A choice of the heart, and what it costs.","k":"M"},{"f":"07_La_Justice","n":"La Justice","e":"Justice","num":"VII","m":"What was set in motion returns. Weigh it fairly.","k":"M"},{"f":"08_Le_Chariot","n":"Le Chariot","e":"The Chariot","num":"VIII","m":"Hold the opposing forces and drive on.","k":"M"},{"f":"09_La_Force","n":"La Force","e":"Strength","num":"IX","m":"Gentleness masters what force cannot.","k":"M"},{"f":"10_La_Roue_de_Fortune","n":"La Roue de Fortune","e":"Wheel of Fortune","num":"X","m":"The wheel turns. Nothing stays where it is.","k":"M"},{"f":"11_L_Ermite","n":"L’Ermite","e":"The Hermit","num":"XI","m":"Withdraw. Your own lamp is enough.","k":"M"},{"f":"12_Le_Pendu","n":"Le Pendu","e":"The Hanged Man","num":"XII","m":"Give up the position. See it upside down.","k":"M"},{"f":"13_La_Mort","n":"La Mort","e":"Death","num":"XIII","m":"An ending clears the ground.","k":"M"},{"f":"14_Temperance","n":"Tempérance","e":"Temperance","num":"XIV","m":"Mix slowly. Patience makes the alloy.","k":"M"},{"f":"15_Le_Diable","n":"Le Diable","e":"The Devil","num":"XV","m":"Name what binds you. The chain is looser than it looks.","k":"M"},{"f":"16_La_Maison_Dieu","n":"La Maison Dieu","e":"The Tower","num":"XVI","m":"What was built on a lie comes down. Let it.","k":"M"},{"f":"17_L_Etoile","n":"L’Étoile","e":"The Star","num":"XVII","m":"After the storm, a quiet hope.","k":"M"},{"f":"18_La_Lune","n":"La Lune","e":"The Moon","num":"XVIII","m":"Not everything is visible. Move carefully in the dark.","k":"M"},{"f":"19_Le_Soleil","n":"Le Soleil","e":"The Sun","num":"XIX","m":"Clarity, warmth, plain joy.","k":"M"},{"f":"20_Le_Jugement","n":"Le Jugement","e":"Judgement","num":"XX","m":"A call to rise and answer for your life.","k":"M"},{"f":"21_Le_Monde","n":"Le Monde","e":"The World","num":"XXI","m":"Completion. The circle closes.","k":"M"},{"f":"Cups01","n":"As de Coupe","e":"Ace of Cups","num":"","m":"A heart opens.","k":"C"},{"f":"Cups02","n":"Deux de Coupes","e":"Two of Cups","num":"","m":"Two meet as equals.","k":"C"},{"f":"Cups03","n":"Trois de Coupes","e":"Three of Cups","num":"","m":"Friends gather. A celebration.","k":"C"},{"f":"Cups04","n":"Quatre de Coupes","e":"Four of Cups","num":"","m":"What is offered does not tempt you.","k":"C"},{"f":"Cups05","n":"Cinq de Coupes","e":"Five of Cups","num":"","m":"Grief for what spilled. Two cups still stand.","k":"C"},{"f":"Cups06","n":"Six de Coupes","e":"Six of Cups","num":"","m":"An old sweetness returns.","k":"C"},{"f":"Cups07","n":"Sept de Coupes","e":"Seven of Cups","num":"","m":"Many dreams. Choose one.","k":"C"},{"f":"Cups08","n":"Huit de Coupes","e":"Eight of Cups","num":"","m":"Walk away from what no longer fills you.","k":"C"},{"f":"Cups09","n":"Neuf de Coupes","e":"Nine of Cups","num":"","m":"The wish is granted.","k":"C"},{"f":"Cups10","n":"Dix de Coupes","e":"Ten of Cups","num":"","m":"A full house. A lasting joy.","k":"C"},{"f":"Cups11","n":"Valet de Coupe","e":"Page of Cups","num":"","m":"A tender message.","k":"C"},{"f":"Cups12","n":"Cavalier de Coupe","e":"Knight of Cups","num":"","m":"An offer of the heart.","k":"C"},{"f":"Cups13","n":"Reine de Coupe","e":"Queen of Cups","num":"","m":"Deep feeling, held with care.","k":"C"},{"f":"Cups14","n":"Roi de Coupe","e":"King of Cups","num":"","m":"Calm over strong waters.","k":"C"},{"f":"Pents01","n":"As de Denier","e":"Ace of Coins","num":"","m":"A seed of wealth or health.","k":"P"},{"f":"Pents02","n":"Deux de Deniers","e":"Two of Coins","num":"","m":"Juggling. Keep your balance.","k":"P"},{"f":"Pents03","n":"Trois de Deniers","e":"Three of Coins","num":"","m":"Good work done together.","k":"P"},{"f":"Pents04","n":"Quatre de Deniers","e":"Four of Coins","num":"","m":"Holding tight. Security, or greed.","k":"P"},{"f":"Pents05","n":"Cinq de Deniers","e":"Five of Coins","num":"","m":"Out in the cold. Help is near.","k":"P"},{"f":"Pents06","n":"Six de Deniers","e":"Six of Coins","num":"","m":"Giving and receiving.","k":"P"},{"f":"Pents07","n":"Sept de Deniers","e":"Seven of Coins","num":"","m":"Patience. The harvest is slow.","k":"P"},{"f":"Pents08","n":"Huit de Deniers","e":"Eight of Coins","num":"","m":"Diligent craft.","k":"P"},{"f":"Pents09","n":"Neuf de Deniers","e":"Nine of Coins","num":"","m":"Comfort you made yourself.","k":"P"},{"f":"Pents10","n":"Dix de Deniers","e":"Ten of Coins","num":"","m":"Lasting wealth. An inheritance.","k":"P"},{"f":"Pents11","n":"Valet de Denier","e":"Page of Coins","num":"","m":"A student of the material world.","k":"P"},{"f":"Pents12","n":"Cavalier de Denier","e":"Knight of Coins","num":"","m":"Slow, reliable progress.","k":"P"},{"f":"Pents13","n":"Reine de Denier","e":"Queen of Coins","num":"","m":"Practical care and plenty.","k":"P"},{"f":"Pents14","n":"Roi de Denier","e":"King of Coins","num":"","m":"Wealth well governed.","k":"P"},{"f":"Swords01","n":"As d’Épée","e":"Ace of Swords","num":"","m":"A clean cut. The truth.","k":"S"},{"f":"Swords02","n":"Deux d’Épées","e":"Two of Swords","num":"","m":"A standoff. You are avoiding the choice.","k":"S"},{"f":"Swords03","n":"Trois d’Épées","e":"Three of Swords","num":"","m":"A grief that has to be felt.","k":"S"},{"f":"Swords04","n":"Quatre d’Épées","e":"Four of Swords","num":"","m":"Rest before the next battle.","k":"S"},{"f":"Swords05","n":"Cinq d’Épées","e":"Five of Swords","num":"","m":"Winning, at too high a price.","k":"S"},{"f":"Swords06","n":"Six d’Épées","e":"Six of Swords","num":"","m":"Crossing to calmer water.","k":"S"},{"f":"Swords07","n":"Sept d’Épées","e":"Seven of Swords","num":"","m":"Cunning. Not everything is above board.","k":"S"},{"f":"Swords08","n":"Huit d’Épées","e":"Eight of Swords","num":"","m":"Bound by your own thoughts.","k":"S"},{"f":"Swords09","n":"Neuf d’Épées","e":"Nine of Swords","num":"","m":"Worry in the night.","k":"S"},{"f":"Swords10","n":"Dix d’Épées","e":"Ten of Swords","num":"","m":"The worst is over. Dawn follows.","k":"S"},{"f":"Swords11","n":"Valet d’Épée","e":"Page of Swords","num":"","m":"Watchful, curious, sharp.","k":"S"},{"f":"Swords12","n":"Cavalier d’Épée","e":"Knight of Swords","num":"","m":"Swift, headlong action.","k":"S"},{"f":"Swords13","n":"Reine d’Épée","e":"Queen of Swords","num":"","m":"Clear sight, without illusions.","k":"S"},{"f":"Swords14","n":"Roi d’Épée","e":"King of Swords","num":"","m":"Judgement and authority.","k":"S"},{"f":"Wands01","n":"As de Bâton","e":"Ace of Batons","num":"","m":"A spark. Begin.","k":"W"},{"f":"Wands02","n":"Deux de Bâtons","e":"Two of Batons","num":"","m":"The world is in your hand. Plan.","k":"W"},{"f":"Wands03","n":"Trois de Bâtons","e":"Three of Batons","num":"","m":"Your ships are on the way.","k":"W"},{"f":"Wands04","n":"Quatre de Bâtons","e":"Four of Batons","num":"","m":"A homecoming. A threshold crossed.","k":"W"},{"f":"Wands05","n":"Cinq de Bâtons","e":"Five of Batons","num":"","m":"Rivalry and friction.","k":"W"},{"f":"Wands06","n":"Six de Bâtons","e":"Six of Batons","num":"","m":"Recognition. A public win.","k":"W"},{"f":"Wands07","n":"Sept de Bâtons","e":"Seven of Batons","num":"","m":"Hold the high ground.","k":"W"},{"f":"Wands08","n":"Huit de Bâtons","e":"Eight of Batons","num":"","m":"Things move fast now.","k":"W"},{"f":"Wands09","n":"Neuf de Bâtons","e":"Nine of Batons","num":"","m":"Wounded, and still standing.","k":"W"},{"f":"Wands10","n":"Dix de Bâtons","e":"Ten of Batons","num":"","m":"Too much carried for too long.","k":"W"},{"f":"Wands11","n":"Valet de Bâton","e":"Page of Batons","num":"","m":"News of a venture.","k":"W"},{"f":"Wands12","n":"Cavalier de Bâton","e":"Knight of Batons","num":"","m":"Restless, bold, on the move.","k":"W"},{"f":"Wands13","n":"Reine de Bâton","e":"Queen of Batons","num":"","m":"Warmth and confidence.","k":"W"},{"f":"Wands14","n":"Roi de Bâton","e":"King of Batons","num":"","m":"Vision, and the will to lead.","k":"W"}],"ar":0.5687},{"id":"marseille","name":"Tarot de Marseille","date":"18th century","year":1750,"place":"Marseille","maker":"Traditional pattern","medium":"","note":"The pattern fixed by the card makers of Marseille, from which most later decks descend. Justice is the eighth trump and Strength the eleventh, the reverse of the order used today.","credit":"Wikimedia Commons","count":"78 cards","cover":"00_Le_Mat","peek":["13_La_Mort","17_L_Etoile"],"back":{"kind":"stars","paper":"#ebe1c8","ink":"#2b4a7e"},"cards":[{"f":"00_Le_Mat","n":"Le Mat","e":"The Fool","num":"","m":"Step off the edge. Not knowing is how it begins.","k":"M"},{"f":"01_Le_Bateleur","n":"Le Bateleur","e":"The Magician","num":"I","m":"Everything you need is already on the table.","k":"M"},{"f":"02_La_Papesse","n":"La Papesse","e":"The High Priestess","num":"II","m":"Something is known but not yet said. Listen.","k":"M"},{"f":"03_L_Imperatrice","n":"L’Impératrice","e":"The Empress","num":"III","m":"Abundance. Tend what is growing.","k":"M"},{"f":"04_L_Empereur","n":"L’Empereur","e":"The Emperor","num":"IV","m":"Build the structure, and answer for it.","k":"M"},{"f":"05_Le_Pape","n":"Le Pape","e":"The Hierophant","num":"V","m":"Seek the teacher, the tradition, the rite.","k":"M"},{"f":"06_L_Amoureux","n":"L’Amoureux","e":"The Lovers","num":"VI","m":"A choice of the heart, and what it costs.","k":"M"},{"f":"07_Le_Chariot","n":"Le Chariot","e":"The Chariot","num":"VII","m":"Hold the opposing forces and drive on.","k":"M"},{"f":"08_La_Justice","n":"La Justice","e":"Justice","num":"VIII","m":"What was set in motion returns. Weigh it fairly.","k":"M"},{"f":"09_L_Ermite","n":"L’Ermite","e":"The Hermit","num":"IX","m":"Withdraw. Your own lamp is enough.","k":"M"},{"f":"10_La_Roue_de_Fortune","n":"La Roue de Fortune","e":"Wheel of Fortune","num":"X","m":"The wheel turns. Nothing stays where it is.","k":"M"},{"f":"11_La_Force","n":"La Force","e":"Strength","num":"XI","m":"Gentleness masters what force cannot.","k":"M"},{"f":"12_Le_Pendu","n":"Le Pendu","e":"The Hanged Man","num":"XII","m":"Give up the position. See it upside down.","k":"M"},{"f":"13_La_Mort","n":"La Mort","e":"Death","num":"XIII","m":"An ending clears the ground.","k":"M"},{"f":"14_Temperance","n":"Tempérance","e":"Temperance","num":"XIV","m":"Mix slowly. Patience makes the alloy.","k":"M"},{"f":"15_Le_Diable","n":"Le Diable","e":"The Devil","num":"XV","m":"Name what binds you. The chain is looser than it looks.","k":"M"},{"f":"16_La_Maison_Dieu","n":"La Maison Dieu","e":"The Tower","num":"XVI","m":"What was built on a lie comes down. Let it.","k":"M"},{"f":"17_L_Etoile","n":"L’Étoile","e":"The Star","num":"XVII","m":"After the storm, a quiet hope.","k":"M"},{"f":"18_La_Lune","n":"La Lune","e":"The Moon","num":"XVIII","m":"Not everything is visible. Move carefully in the dark.","k":"M"},{"f":"19_Le_Soleil","n":"Le Soleil","e":"The Sun","num":"XIX","m":"Clarity, warmth, plain joy.","k":"M"},{"f":"20_Le_Jugement","n":"Le Jugement","e":"Judgement","num":"XX","m":"A call to rise and answer for your life.","k":"M"},{"f":"21_Le_Monde","n":"Le Monde","e":"The World","num":"XXI","m":"Completion. The circle closes.","k":"M"},{"f":"Cups01","n":"As de Coupe","e":"Ace of Cups","num":"","m":"A heart opens.","k":"C"},{"f":"Cups02","n":"Deux de Coupes","e":"Two of Cups","num":"","m":"Two meet as equals.","k":"C"},{"f":"Cups03","n":"Trois de Coupes","e":"Three of Cups","num":"","m":"Friends gather. A celebration.","k":"C"},{"f":"Cups04","n":"Quatre de Coupes","e":"Four of Cups","num":"","m":"What is offered does not tempt you.","k":"C"},{"f":"Cups05","n":"Cinq de Coupes","e":"Five of Cups","num":"","m":"Grief for what spilled. Two cups still stand.","k":"C"},{"f":"Cups06","n":"Six de Coupes","e":"Six of Cups","num":"","m":"An old sweetness returns.","k":"C"},{"f":"Cups07","n":"Sept de Coupes","e":"Seven of Cups","num":"","m":"Many dreams. Choose one.","k":"C"},{"f":"Cups08","n":"Huit de Coupes","e":"Eight of Cups","num":"","m":"Walk away from what no longer fills you.","k":"C"},{"f":"Cups09","n":"Neuf de Coupes","e":"Nine of Cups","num":"","m":"The wish is granted.","k":"C"},{"f":"Cups10","n":"Dix de Coupes","e":"Ten of Cups","num":"","m":"A full house. A lasting joy.","k":"C"},{"f":"Cups11","n":"Valet de Coupe","e":"Page of Cups","num":"","m":"A tender message.","k":"C"},{"f":"Cups12","n":"Cavalier de Coupe","e":"Knight of Cups","num":"","m":"An offer of the heart.","k":"C"},{"f":"Cups13","n":"Reine de Coupe","e":"Queen of Cups","num":"","m":"Deep feeling, held with care.","k":"C"},{"f":"Cups14","n":"Roi de Coupe","e":"King of Cups","num":"","m":"Calm over strong waters.","k":"C"},{"f":"Pents01","n":"As de Denier","e":"Ace of Coins","num":"","m":"A seed of wealth or health.","k":"P"},{"f":"Pents02","n":"Deux de Deniers","e":"Two of Coins","num":"","m":"Juggling. Keep your balance.","k":"P"},{"f":"Pents03","n":"Trois de Deniers","e":"Three of Coins","num":"","m":"Good work done together.","k":"P"},{"f":"Pents04","n":"Quatre de Deniers","e":"Four of Coins","num":"","m":"Holding tight. Security, or greed.","k":"P"},{"f":"Pents05","n":"Cinq de Deniers","e":"Five of Coins","num":"","m":"Out in the cold. Help is near.","k":"P"},{"f":"Pents06","n":"Six de Deniers","e":"Six of Coins","num":"","m":"Giving and receiving.","k":"P"},{"f":"Pents07","n":"Sept de Deniers","e":"Seven of Coins","num":"","m":"Patience. The harvest is slow.","k":"P"},{"f":"Pents08","n":"Huit de Deniers","e":"Eight of Coins","num":"","m":"Diligent craft.","k":"P"},{"f":"Pents09","n":"Neuf de Deniers","e":"Nine of Coins","num":"","m":"Comfort you made yourself.","k":"P"},{"f":"Pents10","n":"Dix de Deniers","e":"Ten of Coins","num":"","m":"Lasting wealth. An inheritance.","k":"P"},{"f":"Pents11","n":"Valet de Denier","e":"Page of Coins","num":"","m":"A student of the material world.","k":"P"},{"f":"Pents12","n":"Cavalier de Denier","e":"Knight of Coins","num":"","m":"Slow, reliable progress.","k":"P"},{"f":"Pents13","n":"Reine de Denier","e":"Queen of Coins","num":"","m":"Practical care and plenty.","k":"P"},{"f":"Pents14","n":"Roi de Denier","e":"King of Coins","num":"","m":"Wealth well governed.","k":"P"},{"f":"Swords01","n":"As d’Épée","e":"Ace of Swords","num":"","m":"A clean cut. The truth.","k":"S"},{"f":"Swords02","n":"Deux d’Épées","e":"Two of Swords","num":"","m":"A standoff. You are avoiding the choice.","k":"S"},{"f":"Swords03","n":"Trois d’Épées","e":"Three of Swords","num":"","m":"A grief that has to be felt.","k":"S"},{"f":"Swords04","n":"Quatre d’Épées","e":"Four of Swords","num":"","m":"Rest before the next battle.","k":"S"},{"f":"Swords05","n":"Cinq d’Épées","e":"Five of Swords","num":"","m":"Winning, at too high a price.","k":"S"},{"f":"Swords06","n":"Six d’Épées","e":"Six of Swords","num":"","m":"Crossing to calmer water.","k":"S"},{"f":"Swords07","n":"Sept d’Épées","e":"Seven of Swords","num":"","m":"Cunning. Not everything is above board.","k":"S"},{"f":"Swords08","n":"Huit d’Épées","e":"Eight of Swords","num":"","m":"Bound by your own thoughts.","k":"S"},{"f":"Swords09","n":"Neuf d’Épées","e":"Nine of Swords","num":"","m":"Worry in the night.","k":"S"},{"f":"Swords10","n":"Dix d’Épées","e":"Ten of Swords","num":"","m":"The worst is over. Dawn follows.","k":"S"},{"f":"Swords11","n":"Valet d’Épée","e":"Page of Swords","num":"","m":"Watchful, curious, sharp.","k":"S"},{"f":"Swords12","n":"Cavalier d’Épée","e":"Knight of Swords","num":"","m":"Swift, headlong action.","k":"S"},{"f":"Swords13","n":"Reine d’Épée","e":"Queen of Swords","num":"","m":"Clear sight, without illusions.","k":"S"},{"f":"Swords14","n":"Roi d’Épée","e":"King of Swords","num":"","m":"Judgement and authority.","k":"S"},{"f":"Wands01","n":"As de Bâton","e":"Ace of Batons","num":"","m":"A spark. Begin.","k":"W"},{"f":"Wands02","n":"Deux de Bâtons","e":"Two of Batons","num":"","m":"The world is in your hand. Plan.","k":"W"},{"f":"Wands03","n":"Trois de Bâtons","e":"Three of Batons","num":"","m":"Your ships are on the way.","k":"W"},{"f":"Wands04","n":"Quatre de Bâtons","e":"Four of Batons","num":"","m":"A homecoming. A threshold crossed.","k":"W"},{"f":"Wands05","n":"Cinq de Bâtons","e":"Five of Batons","num":"","m":"Rivalry and friction.","k":"W"},{"f":"Wands06","n":"Six de Bâtons","e":"Six of Batons","num":"","m":"Recognition. A public win.","k":"W"},{"f":"Wands07","n":"Sept de Bâtons","e":"Seven of Batons","num":"","m":"Hold the high ground.","k":"W"},{"f":"Wands08","n":"Huit de Bâtons","e":"Eight of Batons","num":"","m":"Things move fast now.","k":"W"},{"f":"Wands09","n":"Neuf de Bâtons","e":"Nine of Batons","num":"","m":"Wounded, and still standing.","k":"W"},{"f":"Wands10","n":"Dix de Bâtons","e":"Ten of Batons","num":"","m":"Too much carried for too long.","k":"W"},{"f":"Wands11","n":"Valet de Bâton","e":"Page of Batons","num":"","m":"News of a venture.","k":"W"},{"f":"Wands12","n":"Cavalier de Bâton","e":"Knight of Batons","num":"","m":"Restless, bold, on the move.","k":"W"},{"f":"Wands13","n":"Reine de Bâton","e":"Queen of Batons","num":"","m":"Warmth and confidence.","k":"W"},{"f":"Wands14","n":"Roi de Bâton","e":"King of Batons","num":"","m":"Vision, and the will to lead.","k":"W"}],"ar":0.5292},{"id":"etteilla","name":"Grand Etteilla","date":"1789","year":1789,"place":"Paris","maker":"Etteilla (Jean-Baptiste Alliette). This printing H. Pussey, c. 1880–90","medium":"","note":"The first tarot made for telling fortunes. Etteilla printed a meaning on every card, upright at the top and reversed at the bottom, so the deck reads itself. Three cards are missing, Folly among them.","credit":"Bibliothèque nationale de France","count":"75 of 78","cover":"01_Etteilla","peek":["20_Fortune","48_Amour"],"back":{"kind":"rosette","paper":"#ebe4d1","ink":"#3b6872"},"cards":[{"f":"01_Etteilla","n":"Etteilla","e":"The one who asks","num":"1","m":"The questioner. This card stands for you.","k":"M"},{"f":"02_Eclaircissement","n":"Éclaircissement","e":"Enlightenment","num":"2","m":"Light falls on the matter.","k":"M"},{"f":"03_Propos","n":"Propos","e":"Talk","num":"3","m":"What is said, and what is said of you.","k":"M"},{"f":"04_Depouillement","n":"Dépouillement","e":"Stripping bare","num":"4","m":"Something is taken away.","k":"M"},{"f":"05_Voyage","n":"Voyage","e":"Journey","num":"5","m":"A journey, or a change of place.","k":"M"},{"f":"06_Nuit","n":"La Nuit","e":"Night","num":"6","m":"What happens out of sight.","k":"M"},{"f":"07_Appui","n":"Appui","e":"Support","num":"7","m":"Support arrives. Lean on it.","k":"M"},{"f":"08_Etteilla","n":"Etteilla","e":"The one who asks","num":"8","m":"The questioner. This card stands for you.","k":"M"},{"f":"09_La_Justice","n":"La Justice","e":"Justice","num":"9","m":"A fair reckoning.","k":"M"},{"f":"10_La_Temperance","n":"La Tempérance","e":"Temperance","num":"10","m":"Moderation. Mix slowly.","k":"M"},{"f":"11_La_Force","n":"La Force","e":"Strength","num":"11","m":"Strength of body and of will.","k":"M"},{"f":"12_La_Prudence","n":"La Prudence","e":"Prudence","num":"12","m":"Caution. Wait before you act.","k":"M"},{"f":"13_Mariage","n":"Mariage","e":"Marriage","num":"13","m":"A union. A binding.","k":"M"},{"f":"14_Force_Majeure","n":"Force majeure","e":"Superior force","num":"14","m":"A power beyond your control.","k":"M"},{"f":"15_Maladie","n":"Maladie","e":"Illness","num":"15","m":"Something is unwell. Attend to it.","k":"M"},{"f":"16_Le_Jugement_Dernier","n":"Le Jugement dernier","e":"The Last Judgement","num":"16","m":"A final judgement.","k":"M"},{"f":"17_La_Mort","n":"La Mort","e":"Death","num":"17","m":"An ending.","k":"M"},{"f":"18_Traitre","n":"Traître","e":"The traitor","num":"18","m":"Someone false is near.","k":"M"},{"f":"19_Misere","n":"Misère","e":"Want","num":"19","m":"Hardship, and going without.","k":"M"},{"f":"20_Fortune","n":"Fortune","e":"Fortune","num":"20","m":"Luck turns toward you.","k":"M"},{"f":"21_Dissension","n":"Dissension","e":"Discord","num":"21","m":"Quarrel and division.","k":"M"},{"f":"22_Homme_de_Campagne","n":"Homme de campagne","e":"A countryman","num":"22","m":"A plain man of the fields.","k":"W"},{"f":"23_Femme_de_Campagne","n":"Femme de campagne","e":"A countrywoman","num":"23","m":"A plain woman of the fields.","k":"W"},{"f":"24_Depart","n":"Départ","e":"Departure","num":"24","m":"Someone leaves.","k":"W"},{"f":"25_Etranger","n":"Étranger","e":"The stranger","num":"25","m":"A stranger, or something foreign.","k":"W"},{"f":"26_Trahison","n":"Trahison","e":"Betrayal","num":"26","m":"Betrayal.","k":"W"},{"f":"27_Retard","n":"Retard","e":"Delay","num":"27","m":"What you wait for is held back.","k":"W"},{"f":"28_Campagne","n":"Campagne","e":"The country","num":"28","m":"Rest, and distance from the town.","k":"W"},{"f":"29_Pour_Parler","n":"Pour-parler","e":"Negotiation","num":"29","m":"Terms are being discussed.","k":"W"},{"f":"30_Domestique","n":"Domestique","e":"The household","num":"30","m":"The household, and those who keep it.","k":"W"},{"f":"31_Or","n":"Or","e":"Gold","num":"31","m":"Gold. Material gain.","k":"W"},{"f":"32_Societe","n":"Société","e":"Company","num":"32","m":"Company. An association.","k":"W"},{"f":"33_Entreprises","n":"Entreprises","e":"Undertakings","num":"33","m":"Something is undertaken.","k":"W"},{"f":"34_Chagrin","n":"Chagrin","e":"Sorrow","num":"34","m":"Sorrow.","k":"W"},{"f":"35_Naissance","n":"Naissance","e":"Birth","num":"35","m":"A birth. A beginning.","k":"W"},{"f":"36_Homme_Blond","n":"Homme blond","e":"A fair man","num":"36","m":"A fair-haired man of good standing.","k":"C"},{"f":"37_Femme_Blonde","n":"Femme blonde","e":"A fair woman","num":"37","m":"A fair-haired woman.","k":"C"},{"f":"38_Arrive","n":"Arrivée","e":"Arrival","num":"38","m":"Someone arrives.","k":"C"},{"f":"39_Garcon_Blond","n":"Garçon blond","e":"A fair youth","num":"39","m":"A fair-haired young man.","k":"C"},{"f":"40_La_Ville","n":"La Ville","e":"The city","num":"40","m":"The city.","k":"C"},{"f":"41_Victoire","n":"Victoire","e":"Victory","num":"41","m":"Victory.","k":"C"},{"f":"42_Fille_Blonde","n":"Fille blonde","e":"A fair girl","num":"42","m":"A fair-haired young woman.","k":"C"},{"f":"43_La_Pensee","n":"La Pensée","e":"Thought","num":"43","m":"A thought, or a plan kept in mind.","k":"C"},{"f":"44_Le_Passe","n":"Le Passé","e":"The past","num":"44","m":"What is past still matters.","k":"C"},{"f":"45_Heritage","n":"Héritage","e":"Inheritance","num":"45","m":"An inheritance.","k":"C"},{"f":"46_Ennui","n":"Ennui","e":"Weariness","num":"46","m":"Weariness.","k":"C"},{"f":"47_Reussite","n":"Réussite","e":"Success","num":"47","m":"Success.","k":"C"},{"f":"48_Amour","n":"Amour","e":"Love","num":"48","m":"Love.","k":"C"},{"f":"50_Homme_de_Robe","n":"Homme de robe","e":"A man of law","num":"50","m":"A man of the law.","k":"S"},{"f":"51_Veuvage","n":"Veuvage","e":"Widowhood","num":"51","m":"Being left alone.","k":"S"},{"f":"52_Militaire","n":"Militaire","e":"A soldier","num":"52","m":"A soldier.","k":"S"},{"f":"53_Espion","n":"Espion","e":"The spy","num":"53","m":"Someone is watching.","k":"S"},{"f":"54_Pleurs","n":"Pleurs","e":"Tears","num":"54","m":"Tears.","k":"S"},{"f":"55_Ecclesiastique","n":"Ecclésiastique","e":"A churchman","num":"55","m":"A churchman.","k":"S"},{"f":"56_Critique","n":"Critique","e":"Criticism","num":"56","m":"The judgement of others.","k":"S"},{"f":"57_Esperance","n":"Espérance","e":"Hope","num":"57","m":"Hope.","k":"S"},{"f":"58_Route","n":"Route","e":"The road","num":"58","m":"The road ahead.","k":"S"},{"f":"59_Perte","n":"Perte","e":"Loss","num":"59","m":"Loss.","k":"S"},{"f":"60_Solitude","n":"Solitude","e":"Solitude","num":"60","m":"Solitude.","k":"S"},{"f":"61_Eloignement","n":"Éloignement","e":"Distance","num":"61","m":"Distance. A parting.","k":"S"},{"f":"62_Amitie","n":"Amitié","e":"Friendship","num":"62","m":"Friendship.","k":"S"},{"f":"64_Homme_Brun","n":"Homme brun","e":"A dark man","num":"64","m":"A dark-haired man.","k":"P"},{"f":"65_Femme_Brune","n":"Femme brune","e":"A dark woman","num":"65","m":"A dark-haired woman.","k":"P"},{"f":"66_Utilite","n":"Utilité","e":"Usefulness","num":"66","m":"Something useful comes of it.","k":"P"},{"f":"67_Garcon_Brun","n":"Garçon brun","e":"A dark youth","num":"67","m":"A dark-haired young man.","k":"P"},{"f":"68_La_Maison","n":"La Maison","e":"The house","num":"68","m":"The house. The home.","k":"P"},{"f":"69_Effet","n":"Effet","e":"Effect","num":"69","m":"A result. Plans become real.","k":"P"},{"f":"70_Fille_Brune","n":"Fille brune","e":"A dark girl","num":"70","m":"A dark-haired young woman.","k":"P"},{"f":"71_Argent","n":"Argent","e":"Money","num":"71","m":"Money.","k":"P"},{"f":"72_Le_Present","n":"Le Présent","e":"The present","num":"72","m":"The present moment.","k":"P"},{"f":"73_Amant_Amante","n":"Amant","e":"The lover","num":"73","m":"A lover.","k":"P"},{"f":"74_Un_Present","n":"Un Présent","e":"A gift","num":"74","m":"A gift.","k":"P"},{"f":"75_Noble","n":"Noble","e":"A noble","num":"75","m":"A person of rank.","k":"P"},{"f":"76_Ambarras","n":"Embarras","e":"Entanglement","num":"76","m":"An entanglement. A difficulty.","k":"P"},{"f":"77_Parfait_Contentement","n":"Parfait contentement","e":"Perfect contentment","num":"77","m":"Perfect contentment.","k":"P"}],"ar":0.5714},{"id":"wirth","name":"Oswald Wirth","date":"1889","year":1889,"place":"Paris","maker":"Oswald Wirth, with Stanislas de Guaita","medium":"","note":"An occultist’s redrawing of the Marseille trumps, dense with symbols meant for initiates. Only the twenty-two trumps were made, so every card drawn here is a trump.","credit":"Bibliothèque nationale de France","count":"22 trumps","cover":"00_Le_Fou","peek":["17_Les_Etoiles","19_Le_Soleil"],"back":{"kind":"rings","paper":"#e6dec8","ink":"#1f2533"},"cards":[{"f":"00_Le_Fou","n":"Le Fou","e":"The Fool","num":"","m":"Step off the edge. Not knowing is how it begins.","k":"M"},{"f":"01_Le_Bateleur","n":"Le Bateleur","e":"The Magician","num":"I","m":"Everything you need is already on the table.","k":"M"},{"f":"02_La_Papesse","n":"La Papesse","e":"The High Priestess","num":"II","m":"Something is known but not yet said. Listen.","k":"M"},{"f":"03_L_Imperatrice","n":"L’Impératrice","e":"The Empress","num":"III","m":"Abundance. Tend what is growing.","k":"M"},{"f":"04_L_Empereur","n":"L’Empereur","e":"The Emperor","num":"IV","m":"Build the structure, and answer for it.","k":"M"},{"f":"05_Le_Pape","n":"Le Pape","e":"The Hierophant","num":"V","m":"Seek the teacher, the tradition, the rite.","k":"M"},{"f":"06_L_Amoureux","n":"L’Amoureux","e":"The Lovers","num":"VI","m":"A choice of the heart, and what it costs.","k":"M"},{"f":"07_Le_Chariot","n":"Le Chariot","e":"The Chariot","num":"VII","m":"Hold the opposing forces and drive on.","k":"M"},{"f":"08_La_Justice","n":"La Justice","e":"Justice","num":"VIII","m":"What was set in motion returns. Weigh it fairly.","k":"M"},{"f":"09_L_Ermite","n":"L’Ermite","e":"The Hermit","num":"IX","m":"Withdraw. Your own lamp is enough.","k":"M"},{"f":"10_La_Roue_de_Fortune","n":"La Roue de Fortune","e":"Wheel of Fortune","num":"X","m":"The wheel turns. Nothing stays where it is.","k":"M"},{"f":"11_La_Force","n":"La Force","e":"Strength","num":"XI","m":"Gentleness masters what force cannot.","k":"M"},{"f":"12_Le_Pendu","n":"Le Pendu","e":"The Hanged Man","num":"XII","m":"Give up the position. See it upside down.","k":"M"},{"f":"13_La_Mort","n":"La Mort","e":"Death","num":"XIII","m":"An ending clears the ground.","k":"M"},{"f":"14_La_Temperance","n":"La Tempérance","e":"Temperance","num":"XIV","m":"Mix slowly. Patience makes the alloy.","k":"M"},{"f":"15_Le_Diable","n":"Le Diable","e":"The Devil","num":"XV","m":"Name what binds you. The chain is looser than it looks.","k":"M"},{"f":"16_Le_Feu_du_Ciel","n":"Le Feu du Ciel","e":"The Tower","num":"XVI","m":"What was built on a lie comes down. Let it.","k":"M"},{"f":"17_Les_Etoiles","n":"Les Étoiles","e":"The Star","num":"XVII","m":"After the storm, a quiet hope.","k":"M"},{"f":"18_La_Lune","n":"La Lune","e":"The Moon","num":"XVIII","m":"Not everything is visible. Move carefully in the dark.","k":"M"},{"f":"19_Le_Soleil","n":"Le Soleil","e":"The Sun","num":"XIX","m":"Clarity, warmth, plain joy.","k":"M"},{"f":"20_Le_Jugement","n":"Le Jugement","e":"Judgement","num":"XX","m":"A call to rise and answer for your life.","k":"M"},{"f":"21_Le_Monde","n":"Le Monde","e":"The World","num":"XXI","m":"Completion. The circle closes.","k":"M"}],"ar":0.5919},{"id":"rws","name":"Rider–Waite–Smith","date":"1909","year":1909,"place":"London","maker":"Pamela Colman Smith, for A. E. Waite","medium":"Colour lithograph","note":"The deck that gave every card a scene, and the one most modern tarots imitate. Smith painted all seventy-eight designs and was paid a flat fee.","credit":"1909 printing, scans restored by Steve P.","count":"78 cards","cover":"00_Fool","peek":["17_Star","Swords03"],"back":{"kind":"image"},"cards":[{"f":"00_Fool","n":"The Fool","e":"","num":"0","m":"Step off the edge. Not knowing is how it begins.","k":"M"},{"f":"01_Magician","n":"The Magician","e":"","num":"I","m":"Everything you need is already on the table.","k":"M"},{"f":"02_High_Priestess","n":"The High Priestess","e":"","num":"II","m":"Something is known but not yet said. Listen.","k":"M"},{"f":"03_Empress","n":"The Empress","e":"","num":"III","m":"Abundance. Tend what is growing.","k":"M"},{"f":"04_Emperor","n":"The Emperor","e":"","num":"IV","m":"Build the structure, and answer for it.","k":"M"},{"f":"05_Hierophant","n":"The Hierophant","e":"","num":"V","m":"Seek the teacher, the tradition, the rite.","k":"M"},{"f":"06_Lovers","n":"The Lovers","e":"","num":"VI","m":"A choice of the heart, and what it costs.","k":"M"},{"f":"07_Chariot","n":"The Chariot","e":"","num":"VII","m":"Hold the opposing forces and drive on.","k":"M"},{"f":"08_Strength","n":"Strength","e":"","num":"VIII","m":"Gentleness masters what force cannot.","k":"M"},{"f":"09_Hermit","n":"The Hermit","e":"","num":"IX","m":"Withdraw. Your own lamp is enough.","k":"M"},{"f":"10_Wheel_of_Fortune","n":"Wheel of Fortune","e":"","num":"X","m":"The wheel turns. Nothing stays where it is.","k":"M"},{"f":"11_Justice","n":"Justice","e":"","num":"XI","m":"What was set in motion returns. Weigh it fairly.","k":"M"},{"f":"12_Hanged_Man","n":"The Hanged Man","e":"","num":"XII","m":"Give up the position. See it upside down.","k":"M"},{"f":"13_Death","n":"Death","e":"","num":"XIII","m":"An ending clears the ground.","k":"M"},{"f":"14_Temperance","n":"Temperance","e":"","num":"XIV","m":"Mix slowly. Patience makes the alloy.","k":"M"},{"f":"15_Devil","n":"The Devil","e":"","num":"XV","m":"Name what binds you. The chain is looser than it looks.","k":"M"},{"f":"16_Tower","n":"The Tower","e":"","num":"XVI","m":"What was built on a lie comes down. Let it.","k":"M"},{"f":"17_Star","n":"The Star","e":"","num":"XVII","m":"After the storm, a quiet hope.","k":"M"},{"f":"18_Moon","n":"The Moon","e":"","num":"XVIII","m":"Not everything is visible. Move carefully in the dark.","k":"M"},{"f":"19_Sun","n":"The Sun","e":"","num":"XIX","m":"Clarity, warmth, plain joy.","k":"M"},{"f":"20_Judgement","n":"Judgement","e":"","num":"XX","m":"A call to rise and answer for your life.","k":"M"},{"f":"21_World","n":"The World","e":"","num":"XXI","m":"Completion. The circle closes.","k":"M"},{"f":"Cups01","n":"Ace of Cups","e":"","num":"","m":"A heart opens.","k":"C"},{"f":"Cups02","n":"Two of Cups","e":"","num":"","m":"Two meet as equals.","k":"C"},{"f":"Cups03","n":"Three of Cups","e":"","num":"","m":"Friends gather. A celebration.","k":"C"},{"f":"Cups04","n":"Four of Cups","e":"","num":"","m":"What is offered does not tempt you.","k":"C"},{"f":"Cups05","n":"Five of Cups","e":"","num":"","m":"Grief for what spilled. Two cups still stand.","k":"C"},{"f":"Cups06","n":"Six of Cups","e":"","num":"","m":"An old sweetness returns.","k":"C"},{"f":"Cups07","n":"Seven of Cups","e":"","num":"","m":"Many dreams. Choose one.","k":"C"},{"f":"Cups08","n":"Eight of Cups","e":"","num":"","m":"Walk away from what no longer fills you.","k":"C"},{"f":"Cups09","n":"Nine of Cups","e":"","num":"","m":"The wish is granted.","k":"C"},{"f":"Cups10","n":"Ten of Cups","e":"","num":"","m":"A full house. A lasting joy.","k":"C"},{"f":"Cups11","n":"Page of Cups","e":"","num":"","m":"A tender message.","k":"C"},{"f":"Cups12","n":"Knight of Cups","e":"","num":"","m":"An offer of the heart.","k":"C"},{"f":"Cups13","n":"Queen of Cups","e":"","num":"","m":"Deep feeling, held with care.","k":"C"},{"f":"Cups14","n":"King of Cups","e":"","num":"","m":"Calm over strong waters.","k":"C"},{"f":"Pents01","n":"Ace of Pentacles","e":"","num":"","m":"A seed of wealth or health.","k":"P"},{"f":"Pents02","n":"Two of Pentacles","e":"","num":"","m":"Juggling. Keep your balance.","k":"P"},{"f":"Pents03","n":"Three of Pentacles","e":"","num":"","m":"Good work done together.","k":"P"},{"f":"Pents04","n":"Four of Pentacles","e":"","num":"","m":"Holding tight. Security, or greed.","k":"P"},{"f":"Pents05","n":"Five of Pentacles","e":"","num":"","m":"Out in the cold. Help is near.","k":"P"},{"f":"Pents06","n":"Six of Pentacles","e":"","num":"","m":"Giving and receiving.","k":"P"},{"f":"Pents07","n":"Seven of Pentacles","e":"","num":"","m":"Patience. The harvest is slow.","k":"P"},{"f":"Pents08","n":"Eight of Pentacles","e":"","num":"","m":"Diligent craft.","k":"P"},{"f":"Pents09","n":"Nine of Pentacles","e":"","num":"","m":"Comfort you made yourself.","k":"P"},{"f":"Pents10","n":"Ten of Pentacles","e":"","num":"","m":"Lasting wealth. An inheritance.","k":"P"},{"f":"Pents11","n":"Page of Pentacles","e":"","num":"","m":"A student of the material world.","k":"P"},{"f":"Pents12","n":"Knight of Pentacles","e":"","num":"","m":"Slow, reliable progress.","k":"P"},{"f":"Pents13","n":"Queen of Pentacles","e":"","num":"","m":"Practical care and plenty.","k":"P"},{"f":"Pents14","n":"King of Pentacles","e":"","num":"","m":"Wealth well governed.","k":"P"},{"f":"Swords01","n":"Ace of Swords","e":"","num":"","m":"A clean cut. The truth.","k":"S"},{"f":"Swords02","n":"Two of Swords","e":"","num":"","m":"A standoff. You are avoiding the choice.","k":"S"},{"f":"Swords03","n":"Three of Swords","e":"","num":"","m":"A grief that has to be felt.","k":"S"},{"f":"Swords04","n":"Four of Swords","e":"","num":"","m":"Rest before the next battle.","k":"S"},{"f":"Swords05","n":"Five of Swords","e":"","num":"","m":"Winning, at too high a price.","k":"S"},{"f":"Swords06","n":"Six of Swords","e":"","num":"","m":"Crossing to calmer water.","k":"S"},{"f":"Swords07","n":"Seven of Swords","e":"","num":"","m":"Cunning. Not everything is above board.","k":"S"},{"f":"Swords08","n":"Eight of Swords","e":"","num":"","m":"Bound by your own thoughts.","k":"S"},{"f":"Swords09","n":"Nine of Swords","e":"","num":"","m":"Worry in the night.","k":"S"},{"f":"Swords10","n":"Ten of Swords","e":"","num":"","m":"The worst is over. Dawn follows.","k":"S"},{"f":"Swords11","n":"Page of Swords","e":"","num":"","m":"Watchful, curious, sharp.","k":"S"},{"f":"Swords12","n":"Knight of Swords","e":"","num":"","m":"Swift, headlong action.","k":"S"},{"f":"Swords13","n":"Queen of Swords","e":"","num":"","m":"Clear sight, without illusions.","k":"S"},{"f":"Swords14","n":"King of Swords","e":"","num":"","m":"Judgement and authority.","k":"S"},{"f":"Wands01","n":"Ace of Wands","e":"","num":"","m":"A spark. Begin.","k":"W"},{"f":"Wands02","n":"Two of Wands","e":"","num":"","m":"The world is in your hand. Plan.","k":"W"},{"f":"Wands03","n":"Three of Wands","e":"","num":"","m":"Your ships are on the way.","k":"W"},{"f":"Wands04","n":"Four of Wands","e":"","num":"","m":"A homecoming. A threshold crossed.","k":"W"},{"f":"Wands05","n":"Five of Wands","e":"","num":"","m":"Rivalry and friction.","k":"W"},{"f":"Wands06","n":"Six of Wands","e":"","num":"","m":"Recognition. A public win.","k":"W"},{"f":"Wands07","n":"Seven of Wands","e":"","num":"","m":"Hold the high ground.","k":"W"},{"f":"Wands08","n":"Eight of Wands","e":"","num":"","m":"Things move fast now.","k":"W"},{"f":"Wands09","n":"Nine of Wands","e":"","num":"","m":"Wounded, and still standing.","k":"W"},{"f":"Wands10","n":"Ten of Wands","e":"","num":"","m":"Too much carried for too long.","k":"W"},{"f":"Wands11","n":"Page of Wands","e":"","num":"","m":"News of a venture.","k":"W"},{"f":"Wands12","n":"Knight of Wands","e":"","num":"","m":"Restless, bold, on the move.","k":"W"},{"f":"Wands13","n":"Queen of Wands","e":"","num":"","m":"Warmth and confidence.","k":"W"},{"f":"Wands14","n":"King of Wands","e":"","num":"","m":"Vision, and the will to lead.","k":"W"}],"ar":0.6}];
+const byId = Object.fromEntries(DATA.map(d => [d.id, d]));
+const $ = s => document.querySelector(s);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(pointer: fine)').matches;
+const T = ms => reduce ? 1 : ms;
+const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+const img = (d, f) => `decks/${d.id}/${f}.webp`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const center = r => [r.left + r.width / 2, r.top + r.height / 2];
+
+const home=$('#home'), deckView=$('#deck'), shelf=$('#shelf'), axis=$('#axis');
+const table=$('#table'), slotsEl=$('#slots'), ribbon=$('#ribbon'), cueEl=$('#cue'), controls=$('#controls');
+const verdict=$('#verdict'), rlines=$('#rlines'), omenEl=$('#omen'), afterEl=$('#after');
+
+/* ---------------- card backs ---------------- */
+const backCache = {};
+function backFor(d){
+  if (backCache[d.id]) return backCache[d.id];
+  if (d.back.kind === 'image') return backCache[d.id] = img(d, 'Cover');
+  const w = 320, h = Math.round(w / d.ar), cv = document.createElement('canvas');
+  cv.width = w; cv.height = h;
+  const x = cv.getContext('2d'), {paper, ink, kind} = d.back;
+  x.fillStyle = paper; x.fillRect(0, 0, w, h);
+  for (let i = 0; i < 2600; i++){ x.fillStyle = `rgba(${kind==='lattice'?'0,0,0':'60,40,20'},${Math.random()*.05})`; x.fillRect(Math.random()*w, Math.random()*h, 1+Math.random()*2.4, 1+Math.random()*2.4); }
+  x.save(); x.beginPath(); x.rect(16, 16, w-32, h-32); x.clip();
+  x.strokeStyle = ink; x.fillStyle = ink;
+  if (kind === 'lattice'){
+    x.globalAlpha = .55; x.lineWidth = .8; const s = 22;
+    for (let k = -h; k < w + h; k += s){ x.beginPath(); x.moveTo(k, 0); x.lineTo(k + h, h); x.stroke(); x.beginPath(); x.moveTo(k + h, 0); x.lineTo(k, h); x.stroke(); }
+    x.globalAlpha = .85;
+    for (let yy = 0; yy < h + s; yy += s) for (let xx = 0; xx < w + s; xx += s){ x.beginPath(); x.arc(xx + ((yy / s) % 2 ? s/2 : 0), yy, 1.6, 0, 6.283); x.fill(); }
+  } else if (kind === 'hatch'){
+    x.globalAlpha = .38; x.lineWidth = .7;
+    for (let k = -h; k < w + h; k += 4.2){ x.beginPath(); x.moveTo(k, 0); x.lineTo(k + h * .6, h); x.stroke(); }
+    x.globalAlpha = .22;
+    for (let k = -h; k < w + h; k += 4.2){ x.beginPath(); x.moveTo(k + h * .6, 0); x.lineTo(k, h); x.stroke(); }
+  } else if (kind === 'stars'){
+    x.globalAlpha = .8; const s = 18;
+    for (let yy = 0, r = 0; yy < h + s; yy += s, r++) for (let xx = (r % 2) * s/2; xx < w + s; xx += s){
+      x.beginPath(); for (let a = 0; a < 8; a++){ const rr = a % 2 ? 1.6 : 5.2, t = a * Math.PI / 4; x.lineTo(xx + rr * Math.cos(t), yy + rr * Math.sin(t)); } x.closePath(); x.fill(); }
+  } else if (kind === 'rosette'){
+    x.globalAlpha = .75; const s = 24;
+    for (let yy = 0, r = 0; yy < h + s; yy += s, r++) for (let xx = (r % 2) * s/2; xx < w + s; xx += s){
+      x.beginPath(); x.arc(xx, yy, 1.5, 0, 6.283); x.fill();
+      for (let a = 0; a < 6; a++){ x.beginPath(); x.arc(xx + 5.5 * Math.cos(a * Math.PI / 3), yy + 5.5 * Math.sin(a * Math.PI / 3), 1.7, 0, 6.283); x.fill(); } }
+  } else if (kind === 'rings'){
+    x.globalAlpha = .7; x.lineWidth = .7;
+    for (let r = 6; r < Math.max(w, h); r += 7){ x.beginPath(); x.ellipse(w/2, h/2, r * .72, r, 0, 0, 6.283); x.stroke(); }
+  }
+  x.restore();
+  x.globalAlpha = 1; x.strokeStyle = ink; x.lineWidth = 2.2; x.strokeRect(10, 10, w - 20, h - 20); x.lineWidth = .8; x.strokeRect(16, 16, w - 32, h - 32);
+  return backCache[d.id] = cv.toDataURL('image/jpeg', .86);
+}
+
+/* ---------------- home ---------------- */
+const vols = [];
+DATA.forEach((d, i) => {
+  const li = document.createElement('li');
+  li.innerHTML = `<button type="button" class="vol" data-id="${d.id}" style="--ar:${d.ar};--i:${i}" aria-label="${esc(d.name)}, ${esc(d.date)}">
+    <span class="vstack"><img class="pk pk2" src="${img(d, d.peek[1])}" alt=""><img class="pk pk1" src="${img(d, d.peek[0])}" alt=""><img class="cv" src="${img(d, d.cover)}" alt=""></span>
+    <span class="vmeta"><span class="mono">${esc(d.date)}</span><span class="vname">${esc(d.name)}</span><span class="mono">${esc(d.place)}</span></span></button>`;
+  const v = li.firstElementChild;
+  v.addEventListener('click', () => openDeck(d.id, v));
+  v.addEventListener('pointerenter', () => hl(i, true)); v.addEventListener('pointerleave', () => hl(i, false));
+  v.addEventListener('focus', () => hl(i, true)); v.addEventListener('blur', () => hl(i, false));
+  shelf.appendChild(li); vols.push(v);
+});
+function hl(i, on){ axis.querySelectorAll(`[data-i="${i}"]`).forEach(e => e.classList.toggle('hl', on)); }
+function drawAxis(){
+  if (home.hidden || getComputedStyle(axis).display === 'none') return;
+  const r = axis.getBoundingClientRect(), W = r.width; if (!W) return;
+  axis.setAttribute('viewBox', `0 0 ${W} 96`);
+  const sx = y => (y - 1430) / (1930 - 1430) * W;
+  let s = `<line class="ax" x1="0" y1="60" x2="${W}" y2="60"/>`;
+  for (let c = 1500; c <= 1900; c += 100) s += `<line class="ax" x1="${sx(c)}" y1="56" x2="${sx(c)}" y2="64"/><text class="axt" x="${sx(c)}" y="84">${c}</text>`;
+  vols.forEach((v, i) => {
+    const vr = v.querySelector('.vstack').getBoundingClientRect(), cx = vr.left + vr.width / 2 - r.left, tx = sx(DATA[i].year);
+    s += `<path class="cn" data-i="${i}" d="M${cx.toFixed(1)} 0 C ${cx.toFixed(1)} 34, ${tx.toFixed(1)} 26, ${tx.toFixed(1)} 60"/><circle class="dot" data-i="${i}" cx="${tx.toFixed(1)}" cy="60" r="2.6"/>`;
+  });
+  axis.innerHTML = s;
+}
+addEventListener('resize', () => { drawAxis(); if (!deckView.hidden) relayout(); });
+document.fonts && document.fonts.ready.then(drawAxis);
+requestAnimationFrame(drawAxis);
+
+/* ---------------- navigation ---------------- */
+let cur = null, sess = 0;
+async function openDeck(id, fromVol){
+  const d = byId[id]; if (!d) return;
+  const s = ++sess;
+  if (!home.hidden){
+    const anims = [home.animate([{opacity:1},{opacity:0}], {duration:T(520), easing:'ease-in', fill:'forwards'}).finished];
+    if (fromVol) anims.push(fromVol.querySelector('.cv').animate([{transform:'translateY(-12px)', filter:'blur(0)'},{transform:'translateY(-46px) scale(1.06)', filter:'blur(8px)'}], {duration:T(520), easing:'cubic-bezier(.5,0,.75,0)'}).finished);
+    await Promise.all(anims);
+    if (s !== sess) return;
+    home.hidden = true; home.getAnimations().forEach(a => a.cancel());
+  } else if (!deckView.hidden){
+    await deckView.animate([{opacity:1},{opacity:0}], {duration:T(380), fill:'forwards'}).finished;
+    if (s !== sess) return;
+  }
+  deckView.getAnimations().forEach(a => a.cancel());
+  deckView.hidden = false;
+  window.scrollTo(0, 0);
+  renderDeck(d);
+  [...document.querySelectorAll('#cat > *, #table, #more, #plates')].forEach((el, i) =>
+    el.animate([{opacity:0, transform:'translateY(16px)'},{opacity:1, transform:'none'}], {duration:T(1200), delay:T(i * 70), easing:'cubic-bezier(.16,1,.3,1)', fill:'backwards'}));
+}
+async function goHome(){
+  if (!home.hidden) return;
+  ++sess;
+  await deckView.animate([{opacity:1},{opacity:0}], {duration:T(400), fill:'forwards'}).finished;
+  deckView.hidden = true; deckView.getAnimations().forEach(a => a.cancel());
+  closeLB(true);
+  home.hidden = false; window.scrollTo(0, 0);
+  vols.forEach(v => { v.style.animation = 'none'; void v.offsetWidth; v.style.animation = ''; });
+  requestAnimationFrame(drawAxis);
+}
+$('#toHome').addEventListener('click', goHome);
+$('#back').addEventListener('click', goHome);
+
+/* ---------------- deck page ---------------- */
+const mini = $('#mini');
+DATA.forEach(d => {
+  const b = document.createElement('button'); b.type = 'button'; b.dataset.id = d.id;
+  b.style.left = ((d.year - 1450) / (1909 - 1450) * 100) + '%';
+  b.title = `${d.name}, ${d.date}`; b.setAttribute('aria-label', `${d.name}, ${d.date}`);
+  b.addEventListener('click', () => { if (cur && cur.id !== d.id) openDeck(d.id); });
+  mini.appendChild(b);
+});
+
+let state = 'idle', N = 3, order = [], rcs = [], pos = [], lift = [], taken = new Set(), picks = [], slotEls = [];
+
+function renderDeck(d){
+  cur = d;
+  document.querySelectorAll('body > .tilt').forEach(e => e.remove());
+  document.documentElement.style.setProperty('--back', `url("${backFor(d)}")`);
+  deckView.style.setProperty('--ar', d.ar);
+  $('#dName').textContent = d.name;
+  $('#dDate').textContent = d.date;
+  const facts = [['Place', d.place], ['Made by', d.maker], d.medium && ['Medium', d.medium], ['Cards', d.count], ['Scans', d.credit]].filter(Boolean);
+  $('#dFacts').innerHTML = facts.map(([k, v]) => `<dt class="mono">${k}</dt><dd>${esc(v)}</dd>`).join('');
+  $('#dNote').textContent = d.note;
+  mini.querySelectorAll('button').forEach(b => b.setAttribute('aria-current', b.dataset.id === d.id));
+  // plates
+  $('#pCount').textContent = d.count;
+  $('#grid').innerHTML = d.cards.map((c, i) => `<button type="button" class="plate" data-i="${i}"><img src="${img(d, c.f)}" alt="${esc(c.n)}" loading="lazy" decoding="async"><span class="mono pn">${esc(c.num || '·')}</span><span class="pt">${esc(c.n)}</span></button>`).join('');
+  // previous / next
+  const i = DATA.indexOf(d), prev = DATA[(i + DATA.length - 1) % DATA.length], next = DATA[(i + 1) % DATA.length];
+  $('#turnNav').innerHTML = `<button type="button" data-id="${prev.id}"><span class="mono">← ${esc(prev.date)}</span><span class="tn">${esc(prev.name)}</span></button><button type="button" data-id="${next.id}"><span class="mono">${esc(next.date)} →</span><span class="tn">${esc(next.name)}</span></button>`;
+  resetTable();
+}
+$('#turnNav').addEventListener('click', e => { const b = e.target.closest('button'); if (b) openDeck(b.dataset.id); });
+$('#grid').addEventListener('click', e => { const b = e.target.closest('.plate'); if (b) openLB(cur.cards.map(c => ({d:cur, c})), +b.dataset.i); });
+$('#toPlates').addEventListener('click', () => $('#plates').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}));
+
+/* ---------------- the table ---------------- */
+function say(t){
+  if (cueEl.textContent === t) return;
+  cueEl.animate([{opacity:1},{opacity:0}], {duration:T(220), fill:'forwards'}).finished.then(() => {
+    cueEl.textContent = t;
+    cueEl.animate([{opacity:0, transform:'translateY(4px)'},{opacity:1, transform:'none'}], {duration:T(600), easing:'cubic-bezier(.16,1,.3,1)', fill:'forwards'});
+  });
+}
+function resetTable(){
+  state = 'idle'; picks = []; taken = new Set(); slotEls = [];
+  slotsEl.hidden = true; slotsEl.innerHTML = '';
+  verdict.hidden = true; rlines.innerHTML = ''; omenEl.textContent = ''; omenEl.classList.remove('shown'); afterEl.hidden = true;
+  ribbon.className = 'ribbon idle'; ribbon.tabIndex = -1;
+  ribbon.querySelectorAll('.rc').forEach(e => e.remove());
+  const n = cur.cards.length; rcs = []; pos = []; lift = [];
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < n; i++){ const c = document.createElement('div'); c.className = 'rc'; frag.appendChild(c); rcs.push(c); lift.push(0); }
+  ribbon.appendChild(frag);
+  order = cur.cards.map((_, i) => i);
+  controls.hidden = false; cueEl.textContent = 'Hold a question in mind.';
+  requestAnimationFrame(() => { stackPos(); rcs.forEach((c, i) => { c.style.transition = 'none'; paint(i); }); void ribbon.offsetWidth; rcs.forEach(c => c.style.transition = ''); });
+}
+function geo(){
+  const W = ribbon.clientWidth, rw = rcs[0] ? rcs[0].offsetWidth : 60, n = rcs.length;
+  const off = n > 1 ? Math.min((W - rw) / (n - 1), rw * .44) : 0, total = rw + off * (n - 1);
+  return {W, rw, n, off, start:(W - total) / 2};
+}
+const tf = p => `translate3d(${p.x.toFixed(2)}px,${p.y.toFixed(2)}px,0) rotate(${p.r || 0}deg)`;
+function paint(i){ const p = pos[i]; if (p) rcs[i].style.transform = tf({x:p.x, y:p.y + lift[i], r:p.r}); }
+function stackPos(){ const g = geo(); rcs.forEach((_, i) => pos[i] = {x:(g.W - g.rw) / 2 + i * .05, y:30 - i * .17, r:0}); }
+function leftPos(){ const g = geo(); rcs.forEach((_, i) => pos[i] = {x:g.start + i * .05, y:30 - i * .17, r:0}); }
+function spreadPos(){ const g = geo(); rcs.forEach((_, i) => pos[i] = {x:g.start + i * g.off, y:30, r:0}); }
+function relayout(){
+  if (state === 'choose'){ spreadPos(); rcs.forEach((c, i) => paint(i)); }
+  else if (['idle','turn','read'].includes(state)){ stackPos(); rcs.forEach((c, i) => paint(i)); }
+}
+function shuffleOrder(){
+  const a = cur.cards.map((_, i) => i), r = new Uint32Array(a.length); crypto.getRandomValues(r);
+  for (let i = a.length - 1; i > 0; i--){ const j = r[i] % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+controls.addEventListener('click', e => { const b = e.target.closest('[data-n]'); if (b) draw(+b.dataset.n); });
+
+const POS = {1:[['I','The answer']], 3:[['I','What was'],['II','What is'],['III','What may be']]};
+async function draw(n){
+  if (state !== 'idle') return;
+  const s = sess; state = 'shuffle'; N = n; order = shuffleOrder();
+  controls.hidden = true; say(''); ribbon.classList.remove('idle');
+  // slots
+  slotsEl.dataset.n = n; slotsEl.innerHTML = ''; slotEls = [];
+  POS[n].forEach(([k, l], i) => {
+    const el = document.createElement('div'); el.className = 'slot';
+    el.innerHTML = `<div class="sframe"></div><div class="slabel"><span class="mono">${k} · ${l}</span><span class="pname later"></span><span class="mono later l2"></span></div>`;
+    slotsEl.appendChild(el); slotEls.push(el);
+  });
+  slotsEl.hidden = false;
+  const tr = slotsEl.getBoundingClientRect();
+  if (tr.top < 0 || ribbon.getBoundingClientRect().bottom + 60 > innerHeight) window.scrollTo({top: scrollY + tr.top - 24, behavior: reduce ? 'auto' : 'smooth'});
+  slotEls.forEach((el, i) => el.animate([{opacity:0, transform:'translateY(10px)'},{opacity:1, transform:'none'}], {duration:T(900), delay:T(i * 90), easing:'cubic-bezier(.16,1,.3,1)', fill:'backwards'}));
+  await riffle(); if (s !== sess) return;
+  await riffle(); if (s !== sess) return;
+  // ribbon spread: slide the stack to the left end, then sweep it out to the right
+  leftPos(); rcs.forEach((c, i) => paint(i));
+  await wait(520); if (s !== sess) return;
+  ribbon.classList.add('spread');
+  spreadPos();
+  rcs.forEach((c, i) => { c.style.transition = `transform ${T(1000)}ms cubic-bezier(.16,1,.3,1), opacity .35s`; c.style.transitionDelay = `${T(i * 11)}ms`; paint(i); });
+  await wait(1000 + rcs.length * 11); if (s !== sess) return;
+  rcs.forEach(c => { c.style.transition = ''; c.style.transitionDelay = ''; });
+  state = 'choose'; ribbon.classList.add('choose'); ribbon.tabIndex = 0;
+  say(n === 1 ? 'Choose a card.' : 'Choose three cards.');
+}
+async function riffle(){
+  const g = geo(), top = rcs.slice(-18), base = rcs.length - top.length;
+  const out = top.map((c, k) => { const p = pos[base + k], sgn = k % 2 ? 1 : -1; return {c, p, sgn, o:tf({x:p.x + sgn * g.rw * .6, y:p.y - 10, r:sgn * 5})}; });
+  await Promise.all(out.map(({c, p, o}, k) => c.animate([{transform:tf(p)},{transform:o}], {duration:T(340), delay:T(k * 6), easing:'cubic-bezier(.3,0,.2,1)', fill:'forwards'}).finished));
+  await Promise.all(out.map(({c, p, sgn, o}, k) => c.animate([{transform:o},{transform:tf({x:p.x + sgn * g.rw * .12, y:p.y - 4, r:sgn})}, {transform:tf(p)}],
+    {duration:T(300), delay:T(k * 26), easing:'cubic-bezier(.4,0,.6,1)', fill:'forwards'}).finished));
+  top.forEach(c => c.getAnimations().forEach(a => a.cancel()));
+  await ribbon.animate([{transform:'none'},{transform:'translateY(-3px)'},{transform:'none'}], {duration:T(260), easing:'ease-out'}).finished;
+}
+
+/* choosing from the ribbon */
+let hov = -1, lifted = new Set(), downId = null;
+function idxAt(x){
+  const r = ribbon.getBoundingClientRect(), g = geo(), lx = x - r.left - g.start;
+  if (lx < -8 || lx > g.off * (g.n - 1) + g.rw + 8) return -1;
+  return Math.max(0, Math.min(g.n - 1, Math.floor(lx / (g.off || 1))));
+}
+function free(i){
+  if (i < 0) return -1;
+  for (let d = 0; d < rcs.length; d++){ if (i + d < rcs.length && !taken.has(i + d)) return i + d; if (i - d >= 0 && !taken.has(i - d)) return i - d; }
+  return -1;
+}
+function wave(idx){
+  const next = new Map();
+  if (idx >= 0) for (let j = Math.max(0, idx - 8); j <= Math.min(rcs.length - 1, idx + 8); j++){
+    if (taken.has(j)) continue; const d = j - idx; next.set(j, -26 * Math.exp(-(d * d) / 9.5));
+  }
+  for (const j of lifted) if (!next.has(j)){ lift[j] = 0; paint(j); }
+  lifted = new Set(next.keys());
+  for (const [j, v] of next){ lift[j] = v; paint(j); }
+}
+ribbon.addEventListener('pointermove', e => {
+  if (state !== 'choose') return;
+  if (e.pointerType !== 'mouse' && downId === null) return;
+  const i = free(idxAt(e.clientX)); if (i !== hov){ hov = i; wave(i); }
+});
+ribbon.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && state === 'choose'){ hov = -1; wave(-1); } });
+ribbon.addEventListener('pointerdown', e => {
+  if (state !== 'choose') return;
+  downId = e.pointerId; try { ribbon.setPointerCapture(e.pointerId); } catch(_){}
+  const i = free(idxAt(e.clientX)); hov = i; wave(i);
+});
+ribbon.addEventListener('pointerup', e => {
+  if (downId !== e.pointerId) return; downId = null;
+  if (state !== 'choose') return;
+  const r = ribbon.getBoundingClientRect();
+  const inside = e.clientY > r.top - 40 && e.clientY < r.bottom + 20;
+  const i = free(idxAt(e.clientX));
+  if (inside && i >= 0) pick(i);
+  if (e.pointerType !== 'mouse'){ hov = -1; wave(-1); }
+});
+ribbon.addEventListener('pointercancel', () => { downId = null; hov = -1; wave(-1); });
+ribbon.addEventListener('keydown', e => {
+  if (state !== 'choose') return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+    e.preventDefault(); let i = hov < 0 ? Math.floor(rcs.length / 2) : hov + (e.key === 'ArrowRight' ? 1 : -1);
+    i = Math.max(0, Math.min(rcs.length - 1, i)); while (taken.has(i) && i > 0 && i < rcs.length - 1) i += e.key === 'ArrowRight' ? 1 : -1;
+    hov = free(i); wave(hov);
+  } else if ((e.key === 'Enter' || e.key === ' ') && hov >= 0){ e.preventDefault(); pick(hov); }
+});
+
+function makeCard(c){
+  const t = document.createElement('div'); t.className = 'tilt';
+  t.innerHTML = `<div class="card"><div class="face bk"></div><div class="face fr"><img src="${img(cur, c.f)}" alt="${esc(c.n)}" decoding="async"><span class="var"></span></div></div>`;
+  return t;
+}
+function pick(i){
+  if (state !== 'choose' || taken.has(i) || picks.length >= N) return;
+  const slot = slotEls[picks.length], frame = slot.querySelector('.sframe'), c = cur.cards[order[i]];
+  const from = rcs[i].getBoundingClientRect(), to = frame.getBoundingClientRect();
+  taken.add(i); lift[i] = 0; rcs[i].classList.add('gone'); lifted.delete(i);
+  const el = makeCard(c);
+  Object.assign(el.style, {inset:'auto', position:'fixed', left:to.left + 'px', top:to.top + 'px', width:to.width + 'px', height:to.height + 'px', zIndex:60});
+  document.body.appendChild(el);
+  const [fx, fy] = center(from), [tx, ty] = center(to), dx = fx - tx, dy = fy - ty, sc = from.width / to.width;
+  const P = 'perspective(1000px)';
+  const p = {c, el, slot, frame, up:false, landed:false};
+  picks.push(p);
+  const done = picks.length === N;
+  if (done){ state = 'gather'; ribbon.classList.remove('choose'); ribbon.tabIndex = -1; hov = -1; wave(-1); say(''); }
+  else say(N - picks.length === 1 ? 'One more.' : 'Two more.');
+  el.animate([
+    {transform:`${P} translate(${dx}px,${dy}px) rotateX(0deg) scale(${sc})`},
+    {transform:`${P} translate(${dx * .55}px,${dy * .55 - 46}px) rotateX(14deg) scale(${(sc + 1) / 2 * 1.04})`, offset:.45},
+    {transform:`${P} translate(0px,0px) rotateX(0deg) scale(1)`}],
+    {duration:T(950), easing:'cubic-bezier(.33,.7,.2,1)'}).finished.then(() => {
+      el.removeAttribute('style'); frame.appendChild(el); frame.classList.add('filled'); p.landed = true;
+      if (done && picks.every(q => q.landed)) gather();
+    });
+}
+async function gather(){
+  const s = sess;
+  stackPos();
+  const rest = rcs.map((c, i) => i).filter(i => !taken.has(i));
+  rest.forEach((i, k) => { rcs[i].style.transitionDelay = `${T((rest.length - k) * 6)}ms`; paint(i); });
+  taken.forEach(i => { rcs[i].style.transition = 'none'; paint(i); });
+  await wait(900 + rest.length * 6); if (s !== sess) return;
+  rcs.forEach(c => { c.style.transition = ''; c.style.transitionDelay = ''; });
+  ribbon.classList.remove('spread');
+  await wait(300); if (s !== sess) return;
+  ribbon.classList.add('closed');
+  state = 'turn';
+  picks.forEach(p => {
+    const card = p.el.querySelector('.card'); card.classList.add('can');
+    card.setAttribute('role', 'button'); card.tabIndex = 0; card.setAttribute('aria-label', 'Turn this card over');
+    card.addEventListener('click', () => p.up ? openLB(picks.map(q => ({d:cur, c:q.c})).filter((_, k) => picks[k].up), picks.filter(q => q.up).indexOf(p)) : turn(p));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); card.click(); } });
+    bindTilt(p);
+  });
+  await wait(500); if (s !== sess) return;
+  say(N === 1 ? 'Turn it over.' : 'Turn them over, one by one.');
+}
+async function turn(p){
+  if (p.up || state !== 'turn') return;
+  p.up = true;
+  const s = sess, card = p.el.querySelector('.card'), im = card.querySelector('img');
+  card.classList.remove('can'); card.setAttribute('aria-label', p.c.n);
+  try { await im.decode(); } catch(_){}
+  if (s !== sess) return;
+  card.animate([
+    {transform:'translateZ(0) rotateY(0deg)'},
+    {transform:'translateZ(14px) rotateY(-10deg)', offset:.14},
+    {transform:'translateZ(90px) rotateY(100deg)', offset:.52},
+    {transform:'translateZ(0) rotateY(180deg)'}],
+    {duration:T(1350), easing:'cubic-bezier(.45,.05,.2,1)'});
+  card.classList.add('up');
+  const k = picks.indexOf(p), lab = p.slot.querySelector('.slabel');
+  lab.querySelector('.pname').textContent = p.c.n;
+  lab.querySelector('.l2').textContent = [p.c.e, p.c.num].filter(Boolean).join(' · ');
+  await wait(700); if (s !== sess) return;
+  lab.classList.add('shown');
+  verdict.hidden = false;
+  const line = document.createElement('p'); line.className = 'rline'; line.style.order = k;
+  line.innerHTML = `<span class="mono">${POS[N][k][1]}</span><span>${esc(p.c.m)}</span>`;
+  rlines.appendChild(line);
+  requestAnimationFrame(() => requestAnimationFrame(() => line.classList.add('shown')));
+  if (picks.every(q => q.up)){
+    state = 'read'; say('');
+    await wait(900); if (s !== sess) return;
+    omenEl.textContent = omen(picks.map(q => q.c));
+    omenEl.classList.toggle('shown', !!omenEl.textContent);
+    await wait(500); if (s !== sess) return;
+    afterEl.hidden = false;
+    afterEl.animate([{opacity:0},{opacity:1}], {duration:T(900)});
+  } else say(picks.filter(q => !q.up).length === 1 ? 'And the last.' : 'Turn the next.');
+}
+function omen(cs){
+  if (cs.length < 3) return '';
+  const maj = cs.filter(c => c.k === 'M').length;
+  if (cur.id === 'wirth' || maj === 3) return 'Three trumps. This is larger than a single decision.';
+  if (maj === 2) return 'Two of the three are trumps. Larger forces are moving this.';
+  const n = {}; cs.forEach(c => { if (c.k !== 'M') n[c.k] = (n[c.k] || 0) + 1; });
+  const top = Object.entries(n).sort((a, b) => b[1] - a[1])[0];
+  const S = {C:'a matter of the heart', S:'a matter of the mind, and of conflict', W:'a matter of will and ambition', P:'a matter of work, of the body, of money'};
+  if (top && top[1] >= 2) return `${top[1] === 3 ? 'All three' : 'Two'} from one suit. This is ${S[top[0]]}.`;
+  return 'No suit rules. Read the cards in their order.';
+}
+function bindTilt(p){
+  const t = p.el;
+  t.addEventListener('pointermove', e => {
+    if (!p.up || e.pointerType !== 'mouse' || reduce) return;
+    const r = t.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    t.classList.add('live');
+    t.style.setProperty('--ry', ((x - .5) * 12).toFixed(2) + 'deg'); t.style.setProperty('--rx', ((.5 - y) * 12).toFixed(2) + 'deg');
+    t.style.setProperty('--mx', (100 - x * 100).toFixed(1) + '%'); t.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+  });
+  t.addEventListener('pointerleave', () => { t.classList.remove('live'); ['--rx','--ry','--mx','--my'].forEach(k => t.style.removeProperty(k)); });
+}
+
+$('#again').addEventListener('click', async () => {
+  if (state !== 'read') return;
+  const s = sess; state = 'reset';
+  await verdict.animate([{opacity:1},{opacity:0}], {duration:T(400), fill:'forwards'}).finished; if (s !== sess) return;
+  verdict.hidden = true; verdict.getAnimations().forEach(a => a.cancel());
+  rlines.innerHTML = ''; omenEl.classList.remove('shown'); omenEl.textContent = ''; afterEl.hidden = true;
+  picks.forEach(p => {
+    const card = p.el.querySelector('.card');
+    p.el.classList.remove('live'); ['--rx','--ry'].forEach(k => p.el.style.removeProperty(k));
+    card.animate([{transform:'rotateY(180deg)'},{transform:'translateZ(50px) rotateY(90deg)'},{transform:'rotateY(0deg)'}], {duration:T(800), easing:'cubic-bezier(.65,0,.35,1)'});
+    card.classList.remove('up');
+    p.slot.querySelector('.slabel').classList.remove('shown');
+  });
+  ribbon.classList.remove('closed');
+  await wait(1000); if (s !== sess) return;
+  const top = rcs[rcs.length - 1].getBoundingClientRect(), [sx, sy] = center(top);
+  await Promise.all(picks.slice().reverse().map((p, k) => {
+    const r = p.el.getBoundingClientRect(), [cx, cy] = center(r), sc = top.width / r.width;
+    return p.el.animate([{transform:'none'},{transform:`translate(${(sx - cx) * .5}px,${(sy - cy) * .5 - 30}px) scale(${(sc + 1) / 2})`, offset:.5},{transform:`translate(${sx - cx}px,${sy - cy}px) scale(${sc})`}],
+      {duration:T(780), delay:T(k * 120), easing:'cubic-bezier(.6,0,.3,1)', fill:'forwards'}).finished;
+  }));
+  if (s !== sess) return;
+  taken.forEach(i => rcs[i].classList.remove('gone'));
+  await slotsEl.animate([{opacity:1},{opacity:0}], {duration:T(300), fill:'forwards'}).finished; if (s !== sess) return;
+  slotsEl.getAnimations().forEach(a => a.cancel());
+  slotsEl.hidden = true; slotsEl.innerHTML = ''; slotEls = []; picks = []; taken = new Set();
+  state = 'idle'; controls.hidden = false; ribbon.classList.add('idle');
+  controls.animate([{opacity:0},{opacity:1}], {duration:T(700)});
+  say('Hold a question in mind.');
+});
+
+/* ---------------- lightbox ---------------- */
+const lb = $('#lb'), lbImg = $('#lbImg');
+let lbList = [], lbI = 0, lbReturn = null;
+function lbRender(){
+  const {d, c} = lbList[lbI];
+  lbImg.style.setProperty('--ar', d.ar);
+  lbImg.src = img(d, c.f); lbImg.alt = c.n;
+  $('#lbNum').textContent = c.num ? (d.id === 'etteilla' ? `No. ${c.num}` : `Trump ${c.num}`) : (c.k === 'M' ? 'Trump' : SUITNAME[c.k] || '');
+  $('#lbName').textContent = c.n;
+  $('#lbEn').textContent = c.e || '';
+  $('#lbMean').textContent = c.m;
+  $('#lbDeck').textContent = `${d.name} · ${d.date}`;
+  $('#lbNav').hidden = lbList.length < 2;
+}
+const SUITNAME = {C:'Cups', S:'Swords', W:'Batons', P:'Coins'};
+function openLB(list, i){
+  if (!list.length) return;
+  lbList = list; lbI = Math.max(0, i); lbReturn = document.activeElement;
+  lbRender(); lb.hidden = false;
+  requestAnimationFrame(() => lb.classList.add('on'));
+  lbImg.animate([{opacity:0, transform:'scale(.97)'},{opacity:1, transform:'none'}], {duration:T(700), easing:'cubic-bezier(.16,1,.3,1)'});
+  $('#lbClose').focus({preventScroll:true});
+}
+function closeLB(now){
+  if (lb.hidden) return;
+  lb.classList.remove('on');
+  setTimeout(() => { lb.hidden = true; }, now || reduce ? 0 : 420);
+  if (lbReturn && lbReturn.focus) lbReturn.focus({preventScroll:true});
+}
+function lbStep(dir){
+  lbI = (lbI + dir + lbList.length) % lbList.length;
+  lbImg.animate([{opacity:.0, transform:`translateX(${dir * 14}px)`},{opacity:1, transform:'none'}], {duration:T(500), easing:'cubic-bezier(.16,1,.3,1)'});
+  lbRender();
+}
+$('#lbClose').addEventListener('click', () => closeLB());
+$('#lbPrev').addEventListener('click', e => { e.stopPropagation(); lbStep(-1); });
+$('#lbNext').addEventListener('click', e => { e.stopPropagation(); lbStep(1); });
+lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+addEventListener('keydown', e => {
+  if (lb.hidden) return;
+  if (e.key === 'Escape') closeLB();
+  else if (e.key === 'ArrowRight' && lbList.length > 1) lbStep(1);
+  else if (e.key === 'ArrowLeft' && lbList.length > 1) lbStep(-1);
+});
+let sx0 = null;
+lb.addEventListener('touchstart', e => { sx0 = e.touches[0].clientX; }, {passive:true});
+lb.addEventListener('touchend', e => { if (sx0 === null || lbList.length < 2) return; const dx = e.changedTouches[0].clientX - sx0; if (Math.abs(dx) > 50) lbStep(dx < 0 ? 1 : -1); sx0 = null; });
+
+/* ---------------- start ---------------- */
+const h = (location.hash || '').slice(1);
+if (byId[h]){ home.hidden = true; deckView.hidden = false; renderDeck(byId[h]); }
+})();
+</script>
+
+</body></html>
